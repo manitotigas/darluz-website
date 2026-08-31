@@ -3,25 +3,23 @@
 
 <head>
     <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <meta name="viewport"
-          content="width=device-width, initial-scale=1.0">
-
-    <title>Darluz | Energia e Segurança</title>
+    <title>Darluz | Energia & Segurança</title>
 
     <link rel="stylesheet" href="style.css">
 </head>
 
 <body>
 
-    <!-- NAVEGAÇÃO -->
+    <!-- NAVBAR -->
 
     <header class="navbar">
 
-        <div class="logo">
+        <a href="#inicio" class="logo">
             DARLUZ
-            <span>ENERGIA & SEGURANÇA</span>
-        </div>
+            <small>ENERGIA & SEGURANÇA</small>
+        </a>
 
         <nav>
             <a href="#inicio">Início</a>
@@ -31,224 +29,355 @@
             <a href="#contactos">Contactos</a>
         </nav>
 
+        <a href="#contactos" class="nav-button">
+            Contactar
+        </a>
+
     </header>
 
 
     <!-- HERO -->
 
-    <main>
+    <section id="inicio" class="hero">
 
-        <section id="inicio" class="hero">
+        <div class="hero-overlay"></div>
 
-            <div class="hero-content">
+        <div class="hero-content">
 
-                <p class="hero-label">
-                    ENERGIA • SEGURANÇA • CONFIANÇA
-                </p>
-
-                <h1>
-                    Energia que move.<br>
-                    <span>Segurança que protege.</span>
-                </h1>
-
-                <p class="hero-text">
-                    Soluções profissionais de energia e segurança
-                    pensadas para proteger aquilo que realmente importa.
-                </p>
-
-                <div class="hero-buttons">
-
-                    <a href="#servicos" class="btn primary">
-                        Conhecer Serviços
-                    </a>
-
-                    <a href="#contactos" class="btn secondary">
-                        Contactar
-                    </a>
-
-                </div>
-
+            <div class="badge">
+                ⚡ ENERGIA &nbsp; • &nbsp; 🛡️ SEGURANÇA
             </div>
 
-        </section>
+            <h1>
+                Soluções que
+                <span>protegem.</span>
+            </h1>
 
-
-        <!-- SERVIÇOS -->
-
-        <section id="servicos" class="services">
-
-            <div class="section-title">
-
-                <p>O QUE FAZEMOS</p>
-
-                <h2>
-                    Soluções para o que importa.
-                </h2>
-
-            </div>
-
-            <div class="service-grid">
-
-                <div class="service-card">
-                    <div class="service-icon">⚡</div>
-
-                    <h3>Energia</h3>
-
-                    <p>
-                        Soluções e serviços relacionados
-                        com energia e instalações.
-                    </p>
-                </div>
-
-
-                <div class="service-card">
-                    <div class="service-icon">🛡️</div>
-
-                    <h3>Segurança</h3>
-
-                    <p>
-                        Sistemas e soluções pensados
-                        para aumentar a segurança.
-                    </p>
-                </div>
-
-
-                <div class="service-card">
-                    <div class="service-icon">🔧</div>
-
-                    <h3>Manutenção</h3>
-
-                    <p>
-                        Manutenção e acompanhamento
-                        das suas instalações.
-                    </p>
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- SOBRE -->
-
-        <section id="sobre" class="about">
-
-            <div>
-
-                <p class="section-label">
-                    SOBRE A DARLUZ
-                </p>
-
-                <h2>
-                    Experiência, profissionalismo
-                    e confiança.
-                </h2>
-
-                <p>
-                    Conheça melhor a Darluz Energia e Segurança,
-                    os nossos valores e a forma como trabalhamos.
-                </p>
-
-            </div>
-
-        </section>
-
-
-        <!-- FEEDBACKS -->
-
-        <section id="feedbacks" class="feedbacks">
-
-            <div class="section-title">
-
-                <p>OPINIÃO DOS CLIENTES</p>
-
-                <h2>
-                    O que dizem sobre nós
-                </h2>
-
-            </div>
-
-            <div class="feedback-grid">
-
-                <div class="feedback-card">
-
-                    <div class="stars">
-                        ★★★★★
-                    </div>
-
-                    <p>
-                        "Excelente profissionalismo
-                        e atendimento."
-                    </p>
-
-                    <strong>
-                        Cliente Darluz
-                    </strong>
-
-                </div>
-
-
-                <div class="feedback-card">
-
-                    <div class="stars">
-                        ★★★★★
-                    </div>
-
-                    <p>
-                        "Serviço de qualidade
-                        e muita confiança."
-                    </p>
-
-                    <strong>
-                        Cliente Darluz
-                    </strong>
-
-                </div>
-
-            </div>
-
-        </section>
-
-
-        <!-- CONTACTOS -->
-
-        <section id="contactos" class="contact">
-
-            <p class="section-label">
-                CONTACTE-NOS
+            <p>
+                Energia, segurança e soluções profissionais
+                pensadas para pessoas e empresas.
             </p>
 
+            <div class="hero-buttons">
+
+                <a href="#servicos" class="button yellow">
+                    Ver Serviços
+                    <span>→</span>
+                </a>
+
+                <a href="#sobre" class="button outline">
+                    Conhecer a Darluz
+                </a>
+
+            </div>
+
+        </div>
+
+        <div class="hero-decoration"></div>
+
+    </section>
+
+
+    <!-- INTRO -->
+
+    <section class="intro">
+
+        <div class="intro-item">
+
+            <span class="intro-icon">⚡</span>
+
+            <div>
+                <strong>Energia</strong>
+                <p>Soluções eficientes</p>
+            </div>
+
+        </div>
+
+        <div class="intro-item">
+
+            <span class="intro-icon">🛡️</span>
+
+            <div>
+                <strong>Segurança</strong>
+                <p>Proteção e confiança</p>
+            </div>
+
+        </div>
+
+        <div class="intro-item">
+
+            <span class="intro-icon">✓</span>
+
+            <div>
+                <strong>Profissionalismo</strong>
+                <p>Qualidade em cada projeto</p>
+            </div>
+
+        </div>
+
+    </section>
+
+
+    <!-- SERVIÇOS -->
+
+    <section id="servicos" class="services">
+
+        <div class="section-heading">
+
+            <span>O QUE FAZEMOS</span>
+
             <h2>
-                Precisa de uma solução?
+                Soluções pensadas<br>
+                <strong>para si.</strong>
             </h2>
 
             <p>
-                Entre em contacto com a Darluz.
+                Conheça algumas das áreas onde a Darluz
+                pode ajudar.
             </p>
 
-            <a href="mailto:email@exemplo.pt"
-               class="btn primary">
-                Contactar
+        </div>
+
+
+        <div class="service-grid">
+
+            <article class="service-card blue-card">
+
+                <div class="card-top">
+                    <span class="card-icon">⚡</span>
+                    <span class="card-number">01</span>
+                </div>
+
+                <h3>Energia</h3>
+
+                <p>
+                    Soluções relacionadas com energia
+                    e instalações para diferentes necessidades.
+                </p>
+
+                <a href="#contactos">
+                    Saber mais →
+                </a>
+
+            </article>
+
+
+            <article class="service-card yellow-card">
+
+                <div class="card-top">
+                    <span class="card-icon">🛡️</span>
+                    <span class="card-number">02</span>
+                </div>
+
+                <h3>Segurança</h3>
+
+                <p>
+                    Soluções de segurança pensadas
+                    para aumentar a proteção.
+                </p>
+
+                <a href="#contactos">
+                    Saber mais →
+                </a>
+
+            </article>
+
+
+            <article class="service-card dark-card">
+
+                <div class="card-top">
+                    <span class="card-icon">🔧</span>
+                    <span class="card-number">03</span>
+                </div>
+
+                <h3>Manutenção</h3>
+
+                <p>
+                    Acompanhamento e manutenção
+                    das suas instalações e equipamentos.
+                </p>
+
+                <a href="#contactos">
+                    Saber mais →
+                </a>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- SOBRE -->
+
+    <section id="sobre" class="about">
+
+        <div class="about-image">
+
+            <div class="image-placeholder">
+                <span>⚡</span>
+                <strong>DARLUZ</strong>
+                <small>ENERGIA & SEGURANÇA</small>
+            </div>
+
+        </div>
+
+
+        <div class="about-content">
+
+            <span class="section-label">
+                SOBRE NÓS
+            </span>
+
+            <h2>
+                Mais do que serviços.
+                <strong>Confiança.</strong>
+            </h2>
+
+            <p>
+                A Darluz Energia e Segurança dedica-se
+                a fornecer soluções profissionais,
+                com foco na qualidade, segurança
+                e satisfação dos seus clientes.
+            </p>
+
+            <a href="#contactos" class="text-button">
+                Conhecer melhor a Darluz →
             </a>
 
-        </section>
+        </div>
 
-    </main>
+    </section>
+
+
+    <!-- DESTAQUES -->
+
+    <section class="stats">
+
+        <div>
+            <strong>+</strong>
+            <span>Qualidade</span>
+            <p>Em cada projeto</p>
+        </div>
+
+        <div>
+            <strong>24/7</strong>
+            <span>Segurança</span>
+            <p>Proteção e confiança</p>
+        </div>
+
+        <div>
+            <strong>100%</strong>
+            <span>Compromisso</span>
+            <p>Com os nossos clientes</p>
+        </div>
+
+    </section>
+
+
+    <!-- FEEDBACKS -->
+
+    <section id="feedbacks" class="reviews">
+
+        <div class="section-heading center">
+
+            <span>FEEDBACKS</span>
+
+            <h2>
+                A opinião dos nossos
+                <strong>clientes.</strong>
+            </h2>
+
+        </div>
+
+
+        <div class="review-grid">
+
+            <article class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Excelente atendimento e profissionalismo.
+                    Ficámos muito satisfeitos com o serviço."
+                </p>
+
+                <strong>Cliente Darluz</strong>
+
+            </article>
+
+
+            <article class="review-card">
+
+                <div class="stars">
+                    ★★★★★
+                </div>
+
+                <p>
+                    "Serviço de qualidade e uma equipa
+                    muito profissional."
+                </p>
+
+                <strong>Cliente Darluz</strong>
+
+            </article>
+
+        </div>
+
+    </section>
+
+
+    <!-- CONTACTO -->
+
+    <section id="contactos" class="contact">
+
+        <div class="contact-box">
+
+            <div>
+
+                <span>
+                    TEM UM PROJETO EM MENTE?
+                </span>
+
+                <h2>
+                    Vamos falar?
+                </h2>
+
+                <p>
+                    Entre em contacto com a Darluz
+                    e descubra como podemos ajudar.
+                </p>
+
+            </div>
+
+            <a href="mailto:email@exemplo.pt"
+               class="button yellow">
+                Contactar agora →
+            </a>
+
+        </div>
+
+    </section>
 
 
     <!-- FOOTER -->
 
     <footer>
 
-        <strong>DARLUZ</strong>
+        <div class="footer-logo">
+            DARLUZ
+            <small>ENERGIA & SEGURANÇA</small>
+        </div>
 
         <p>
-            Energia & Segurança
+            Energia. Segurança. Confiança.
         </p>
 
-        <p>
-            © 2026 Darluz. Todos os direitos reservados.
-        </p>
+        <span>
+            © 2026 Darluz Energia e Segurança
+        </span>
 
     </footer>
 
