@@ -3,13 +3,15 @@
 
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Darluz | Energia & Segurança</title>
 
     <meta
         name="description"
-        content="Darluz Energia e Segurança. Instalações elétricas, segurança, redes estruturadas, alarmes, videovigilância e domótica."
+        content="Darluz Energia e Segurança. Soluções profissionais de energia, segurança, manutenção e instalações."
     >
 
     <link rel="stylesheet" href="style.css">
@@ -23,27 +25,33 @@
 
 <header class="header">
 
-    <button class="menu-button" aria-label="Abrir menu" aria-expanded="false">
+    <button
+        class="menu-button"
+        aria-label="Abrir menu"
+        aria-expanded="false"
+        type="button"
+    >
         <span></span>
         <span></span>
         <span></span>
     </button>
 
-    <a href="#inicio" class="brand">
 
+    <a href="#inicio" class="brand" aria-label="Darluz - Início">
+
+        <!-- LOGÓTIPO DARLUZ -->
         <img
-            src="https://darluz.com/wp-content/uploads/2022/02/logo-darluz.png"
+            src="logo-darluz.png"
             alt="Darluz Energia e Segurança"
             class="brand-logo"
-            onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
         >
 
-        <div class="brand-fallback">
-            <strong>DARLUZ</strong>
-            <small>ENERGIA & SEGURANÇA</small>
-        </div>
+        <span class="brand-fallback">
+            DARLUZ
+        </span>
 
     </a>
+
 
     <a href="#contactos" class="header-contact">
         CONTACTAR
@@ -58,71 +66,76 @@
 
 <div class="menu-overlay"></div>
 
-<aside class="side-menu">
+<aside class="side-menu" aria-label="Menu principal">
 
     <div class="menu-top">
 
         <a href="#inicio" class="brand menu-brand">
 
             <img
-                src="https://darluz.com/wp-content/uploads/2022/02/logo-darluz.png"
+                src="logo-darluz.png"
                 alt="Darluz"
                 class="menu-logo"
-                onerror="this.style.display='none'; this.nextElementSibling.style.display='flex';"
             >
 
-            <div class="brand-fallback">
-                <strong>DARLUZ</strong>
-                <small>ENERGIA & SEGURANÇA</small>
-            </div>
+            <span class="brand-fallback">
+                DARLUZ
+            </span>
 
         </a>
 
-        <button class="close-menu" aria-label="Fechar menu">
+
+        <button
+            class="close-menu"
+            aria-label="Fechar menu"
+            type="button"
+        >
             ×
         </button>
 
     </div>
 
+
     <nav class="main-menu">
 
         <a href="#inicio">
             <span>01</span>
-            Início
+            <strong>Início</strong>
             <b>→</b>
         </a>
 
         <a href="#sobre">
             <span>02</span>
-            Sobre Nós
+            <strong>Sobre Nós</strong>
             <b>→</b>
         </a>
 
         <a href="#servicos">
             <span>03</span>
-            Serviços
+            <strong>Serviços</strong>
             <b>→</b>
         </a>
 
         <a href="#projetos">
             <span>04</span>
-            Projetos
+            <strong>Projetos</strong>
             <b>→</b>
         </a>
 
         <a href="#feedbacks">
             <span>05</span>
-            Feedbacks
+            <strong>Feedbacks</strong>
             <b>→</b>
         </a>
 
         <a href="#contactos">
             <span>06</span>
-            Contactos
+            <strong>Contactos</strong>
             <b>→</b>
         </a>
 
     </nav>
+
 
     <div class="menu-bottom">
 
@@ -132,7 +145,10 @@
             CONFIANÇA.
         </p>
 
-        <a href="#contactos" class="menu-button-contact">
+        <a
+            href="#contactos"
+            class="menu-button-contact"
+        >
             Falar com a Darluz →
         </a>
 
@@ -156,22 +172,21 @@
 
     <div class="hero-pattern"></div>
 
+
     <div class="hero-content">
 
         <!-- LOGO EM DESTAQUE -->
-
-        <div class="hero-logo">
+        <div class="hero-logo-wrap">
 
             <img
-                src="https://darluz.com/wp-content/uploads/2022/02/logo-darluz.png"
-                alt="DARLUZ - Energia e Segurança"
-                onerror="this.style.display='none'; document.querySelector('.hero-logo-fallback').style.display='flex';"
+                src="logo-darluz.png"
+                alt="Darluz Energia e Segurança"
+                class="hero-logo"
             >
 
-            <div class="hero-logo-fallback">
-                <strong>DARLUZ</strong>
-                <span>ENERGIA & SEGURANÇA</span>
-            </div>
+            <span class="hero-logo-fallback">
+                DARLUZ
+            </span>
 
         </div>
 
@@ -182,6 +197,7 @@
 
 
         <h1>
+
             Energia que
             <span>move.</span>
 
@@ -189,24 +205,32 @@
 
             Segurança que
             <span>protege.</span>
+
         </h1>
 
 
         <p>
-            Soluções profissionais para instalações elétricas,
-            segurança, redes, alarmes, videovigilância e domótica.
+            Soluções profissionais pensadas
+            para proteger pessoas, espaços
+            e negócios.
         </p>
 
 
         <div class="hero-actions">
 
-            <a href="#servicos" class="primary-button">
+            <a
+                href="#servicos"
+                class="primary-button"
+            >
                 Explorar soluções
                 <span>↗</span>
             </a>
 
-            <a href="#contactos" class="secondary-button">
-                Falar connosco
+            <a
+                href="#sobre"
+                class="secondary-button"
+            >
+                Conhecer a Darluz
             </a>
 
         </div>
@@ -248,6 +272,7 @@
 </section>
 
 
+
 <!-- =====================================================
      DESTAQUES
 ===================================================== -->
@@ -256,7 +281,9 @@
 
     <div class="section-intro">
 
-        <span>DARLUZ</span>
+        <span>
+            DARLUZ
+        </span>
 
         <h2>
             Soluções para
@@ -285,8 +312,9 @@
                 </h3>
 
                 <p>
-                    Instalação, reparação e manutenção
-                    de instalações elétricas.
+                    Soluções profissionais
+                    para necessidades
+                    energéticas.
                 </p>
 
                 <a href="#servicos">
@@ -315,8 +343,9 @@
                 </h3>
 
                 <p>
-                    Sistemas de proteção, alarmes,
-                    incêndios e videovigilância.
+                    Proteção e soluções
+                    de segurança para
+                    diferentes espaços.
                 </p>
 
                 <a href="#servicos">
@@ -341,12 +370,13 @@
             <div class="feature-content">
 
                 <h3>
-                    Tecnologia
+                    Manutenção
                 </h3>
 
                 <p>
-                    Redes estruturadas, domótica
-                    e soluções tecnológicas.
+                    Acompanhamento
+                    e manutenção
+                    profissional.
                 </p>
 
                 <a href="#servicos">
@@ -362,6 +392,7 @@
 </section>
 
 
+
 <!-- =====================================================
      SOBRE
 ===================================================== -->
@@ -370,14 +401,22 @@
 
     <div class="about-visual">
 
-        <img
-            src="https://darluz.com/wp-content/uploads/2022/02/logo-darluz.png"
-            alt="Darluz"
-            class="about-logo"
-        >
+        <div class="about-logo-container">
+
+            <img
+                src="logo-darluz.png"
+                alt="Darluz"
+                class="about-logo"
+            >
+
+            <span class="about-logo-fallback">
+                D
+            </span>
+
+        </div>
 
         <div class="about-label">
-            DARLUZ · DESDE 2002
+            DARLUZ
         </div>
 
     </div>
@@ -396,18 +435,18 @@
         </h2>
 
         <p>
-            A Darluz Energia e Segurança tem uma experiência
-            construída ao longo de décadas, oferecendo soluções
-            para clientes particulares, comerciais e industriais.
+            A Darluz Energia e Segurança
+            trabalha para oferecer soluções
+            profissionais, com atenção à
+            qualidade, segurança e satisfação
+            dos seus clientes.
         </p>
 
-        <p>
-            A empresa aposta em trabalhadores qualificados,
-            procurando responder às necessidades dos seus clientes
-            com qualidade, profissionalismo e segurança.
-        </p>
 
-        <a href="#contactos" class="text-link">
+        <a
+            href="#contactos"
+            class="text-link"
+        >
             Conhecer melhor a Darluz
             <span>→</span>
         </a>
@@ -415,6 +454,7 @@
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -439,15 +479,14 @@
         </div>
 
         <p>
-            Soluções profissionais para particulares,
-            empresas e espaços comerciais.
+            Descubra as áreas onde
+            podemos ajudar.
         </p>
 
     </div>
 
 
     <div class="services-list">
-
 
         <article class="service-row">
 
@@ -457,22 +496,28 @@
 
             <div class="service-info">
 
-                <span>01</span>
+                <span>
+                    01
+                </span>
 
                 <h3>
-                    Instalações Elétricas
+                    Energia
                 </h3>
 
             </div>
 
             <p>
-                Instalação, reparação e manutenção
-                de instalações elétricas.
+                Soluções relacionadas
+                com energia e instalações.
             </p>
 
-            <span class="service-arrow">
+            <a
+                href="#contactos"
+                class="service-arrow"
+                aria-label="Contactar sobre Energia"
+            >
                 ↗
-            </span>
+            </a>
 
         </article>
 
@@ -480,27 +525,33 @@
         <article class="service-row">
 
             <div class="service-icon yellow-icon">
-                🔥
+                🛡️
             </div>
 
             <div class="service-info">
 
-                <span>02</span>
+                <span>
+                    02
+                </span>
 
                 <h3>
-                    Segurança Contra Incêndios
+                    Segurança
                 </h3>
 
             </div>
 
             <p>
-                Soluções destinadas a reduzir
-                riscos e proteger pessoas e espaços.
+                Soluções de segurança
+                para maior proteção.
             </p>
 
-            <span class="service-arrow">
+            <a
+                href="#contactos"
+                class="service-arrow"
+                aria-label="Contactar sobre Segurança"
+            >
                 ↗
-            </span>
+            </a>
 
         </article>
 
@@ -508,27 +559,33 @@
         <article class="service-row">
 
             <div class="service-icon dark-icon">
-                🌐
+                🔧
             </div>
 
             <div class="service-info">
 
-                <span>03</span>
+                <span>
+                    03
+                </span>
 
                 <h3>
-                    Redes Estruturadas
+                    Manutenção
                 </h3>
 
             </div>
 
             <p>
-                Redes para dados, voz, imagem
-                e sistemas de segurança.
+                Manutenção e acompanhamento
+                profissional.
             </p>
 
-            <span class="service-arrow">
+            <a
+                href="#contactos"
+                class="service-arrow"
+                aria-label="Contactar sobre Manutenção"
+            >
                 ↗
-            </span>
+            </a>
 
         </article>
 
@@ -536,89 +593,40 @@
         <article class="service-row">
 
             <div class="service-icon blue-icon">
-                🚨
-            </div>
-
-            <div class="service-info">
-
-                <span>04</span>
-
-                <h3>
-                    Alarmes de Intrusão
-                </h3>
-
-            </div>
-
-            <p>
-                Sistemas de segurança destinados
-                à proteção de pessoas e bens.
-            </p>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </article>
-
-
-        <article class="service-row">
-
-            <div class="service-icon">
-                📹
-            </div>
-
-            <div class="service-info">
-
-                <span>05</span>
-
-                <h3>
-                    Videovigilância
-                </h3>
-
-            </div>
-
-            <p>
-                Sistemas CCTV para observação
-                e proteção de diferentes áreas.
-            </p>
-
-            <span class="service-arrow">
-                ↗
-            </span>
-
-        </article>
-
-
-        <article class="service-row">
-
-            <div class="service-icon yellow-icon">
                 💡
             </div>
 
             <div class="service-info">
 
-                <span>06</span>
+                <span>
+                    04
+                </span>
 
                 <h3>
-                    Domótica
+                    Consultoria
                 </h3>
 
             </div>
 
             <p>
-                Automatização de iluminação,
-                climatização e segurança.
+                Orientação para encontrar
+                a solução adequada.
             </p>
 
-            <span class="service-arrow">
+            <a
+                href="#contactos"
+                class="service-arrow"
+                aria-label="Contactar sobre Consultoria"
+            >
                 ↗
-            </span>
+            </a>
 
         </article>
 
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -643,8 +651,8 @@
         </div>
 
         <p>
-            Soluções desenvolvidas para diferentes
-            necessidades e espaços.
+            Alguns dos trabalhos
+            realizados pela Darluz.
         </p>
 
     </div>
@@ -652,15 +660,9 @@
 
     <div class="project-grid">
 
-
         <article class="project-card project-large">
 
             <div class="project-visual energy-visual">
-
-                <img
-                    src="https://images.unsplash.com/photo-1473341304170-971dccb5ac1e?auto=format&fit=crop&w=1200&q=85"
-                    alt="Instalação de energia"
-                >
 
                 <span>
                     ⚡
@@ -677,14 +679,17 @@
                     </span>
 
                     <h3>
-                        Instalações elétricas
+                        Projetos de energia
                     </h3>
 
                 </div>
 
-                <b>
+                <a
+                    href="#contactos"
+                    aria-label="Saber mais sobre projetos de energia"
+                >
                     ↗
-                </b>
+                </a>
 
             </div>
 
@@ -694,11 +699,6 @@
         <article class="project-card">
 
             <div class="project-visual security-visual">
-
-                <img
-                    src="https://images.unsplash.com/photo-1558008258-3256797b43f3?auto=format&fit=crop&w=1000&q=85"
-                    alt="Sistema de segurança"
-                >
 
                 <span>
                     🛡️
@@ -715,14 +715,17 @@
                     </span>
 
                     <h3>
-                        Sistemas de segurança
+                        Soluções de segurança
                     </h3>
 
                 </div>
 
-                <b>
+                <a
+                    href="#contactos"
+                    aria-label="Saber mais sobre soluções de segurança"
+                >
                     ↗
-                </b>
+                </a>
 
             </div>
 
@@ -732,11 +735,6 @@
         <article class="project-card">
 
             <div class="project-visual maintenance-visual">
-
-                <img
-                    src="https://images.unsplash.com/photo-1581092160607-ee22621dd758?auto=format&fit=crop&w=1000&q=85"
-                    alt="Trabalho técnico"
-                >
 
                 <span>
                     🔧
@@ -749,18 +747,21 @@
                 <div>
 
                     <span>
-                        TECNOLOGIA
+                        MANUTENÇÃO
                     </span>
 
                     <h3>
-                        Soluções profissionais
+                        Manutenção profissional
                     </h3>
 
                 </div>
 
-                <b>
+                <a
+                    href="#contactos"
+                    aria-label="Saber mais sobre manutenção"
+                >
                     ↗
-                </b>
+                </a>
 
             </div>
 
@@ -769,6 +770,7 @@
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -795,7 +797,9 @@
 
         <div class="value-card">
 
-            <span>01</span>
+            <span>
+                01
+            </span>
 
             <h3>
                 Qualidade
@@ -811,7 +815,9 @@
 
         <div class="value-card yellow-value">
 
-            <span>02</span>
+            <span>
+                02
+            </span>
 
             <h3>
                 Segurança
@@ -827,7 +833,9 @@
 
         <div class="value-card blue-value">
 
-            <span>03</span>
+            <span>
+                03
+            </span>
 
             <h3>
                 Confiança
@@ -843,7 +851,9 @@
 
         <div class="value-card">
 
-            <span>04</span>
+            <span>
+                04
+            </span>
 
             <h3>
                 Profissionalismo
@@ -859,6 +869,7 @@
     </div>
 
 </section>
+
 
 
 <!-- =====================================================
@@ -896,7 +907,9 @@
 
             <div class="review-author">
 
-                <span>C</span>
+                <span>
+                    C
+                </span>
 
                 <div>
 
@@ -928,7 +941,9 @@
 
             <div class="review-author">
 
-                <span>C</span>
+                <span>
+                    C
+                </span>
 
                 <div>
 
@@ -951,6 +966,7 @@
 </section>
 
 
+
 <!-- =====================================================
      CONTACTOS
 ===================================================== -->
@@ -971,60 +987,42 @@
             </h2>
 
             <p>
-                Tem um projeto ou precisa de mais informações?
-                Entre em contacto com a Darluz.
+                Tem um projeto ou precisa
+                de mais informações?
+                Entre em contacto.
             </p>
 
-            <div class="contact-details">
-
-                <a href="tel:+351968583032">
-                    📞 +351 968 583 032
-                </a>
-
-                <a href="mailto:geral@darluz.com">
-                    ✉️ geral@darluz.com
-                </a>
-
-                <a
-                    href="https://www.google.com/maps/search/?api=1&query=Alameda+Linha+da+P%C3%B3voa+497+4490-269+P%C3%B3voa+de+Varzim"
-                    target="_blank"
-                    rel="noopener"
-                >
-                    📍 Alameda Linha da Póvoa 497,
-                    4490-269 Póvoa de Varzim
-                </a>
-
-            </div>
-
         </div>
 
 
-        <div class="contact-actions">
+        <!--
+            IMPORTANTE:
+            O email real da empresa será colocado aqui.
+            Por agora usamos o endereço oficial encontrado
+            associado ao domínio darluz.com.
+        -->
 
-            <a
-                href="mailto:geral@darluz.com?subject=Pedido%20de%20informações%20-%20Darluz"
-                class="contact-button"
-            >
-                ENVIAR EMAIL
-                <span>↗</span>
-            </a>
+        <a
+            href="mailto:nelsonmarques@darluz.com"
+            class="contact-button"
+        >
 
-            <a
-                href="tel:+351968583032"
-                class="contact-phone-button"
-            >
-                LIGAR AGORA
-                <span>☎</span>
-            </a>
+            CONTACTAR DARLUZ
 
-        </div>
+            <span>
+                ↗
+            </span>
+
+        </a>
 
     </div>
 
 </section>
 
 
+
 </main>
+
 
 
 <!-- =====================================================
@@ -1038,14 +1036,10 @@
         <div class="footer-brand">
 
             <img
-                src="https://darluz.com/wp-content/uploads/2022/02/logo-darluz.png"
+                src="logo-darluz.png"
                 alt="Darluz"
                 class="footer-logo"
             >
-
-            <strong>
-                DARLUZ
-            </strong>
 
             <span>
                 ENERGIA & SEGURANÇA
@@ -1074,7 +1068,7 @@
         </a>
 
         <a href="#sobre">
-            Sobre
+            Sobre Nós
         </a>
 
         <a href="#servicos">
@@ -1085,8 +1079,25 @@
             Projetos
         </a>
 
+        <a href="#feedbacks">
+            Feedbacks
+        </a>
+
         <a href="#contactos">
             Contactos
+        </a>
+
+    </div>
+
+
+    <div class="footer-contact-info">
+
+        <a href="mailto:nelsonmarques@darluz.com">
+            nelsonmarques@darluz.com
+        </a>
+
+        <a href="tel:+351968583032">
+            +351 968 583 032
         </a>
 
     </div>
@@ -1107,7 +1118,12 @@
 </footer>
 
 
+
+<!-- =====================================================
+     JAVASCRIPT
+===================================================== -->
+
 <script src="script.js"></script>
 
 </body>
-</html>
+                </html>
