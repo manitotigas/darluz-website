@@ -2837,36 +2837,3 @@ p {
 }
 
 
-/* =====================================================
-   REDUCED MOTION
-   Não interfere com a animação da intro
-===================================================== */
-
-@media (prefers-reduced-motion: reduce) {
-
-    /* Mantém a intro animada */
-    .intro-animation,
-    .intro-logo,
-    .intro-line,
-    .intro-title,
-    .intro-subtitle,
-    .intro-glow {
-        animation-duration: initial !important;
-        animation-iteration-count: initial !important;
-    }
-
-    /* O resto do site pode reduzir movimentos */
-    .reveal,
-    .hero-logo-wrap,
-    .hero-tag,
-    .hero h1,
-    .hero p,
-    .hero-actions,
-    .hero-card,
-    .hero-bg-circle,
-    .scroll-indicator b,
-    .about-decoration {
-        animation: none !important;
-        transition: none !important;
-    }
-}
