@@ -1,165 +1,166 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    const menuButton = document.querySelector(".menu-button");
-    const closeMenu = document.querySelector(".close-menu");
-    const sideMenu = document.querySelector(".side-menu");
-    const overlay = document.querySelector(".menu-overlay");
+    const body = document.body;
+
+    const intro = document.getElementById("intro");
+
+    const header = document.getElementById("header");
+
+    const menuButton = document.getElementById("menuButton");
+
+    const closeMenu = document.getElementById("closeMenu");
+
+    const sideMenu = document.getElementById("sideMenu");
+
+    const menuOverlay = document.getElementById("menuOverlay");
 
     const menuLinks = document.querySelectorAll(".main-menu a");
-    const menuContact = document.querySelector(".menu-button-contact");
 
-    // ==========================================
-    // ABRIR MENU
-    // ==========================================
+    const revealElements = document.querySelectorAll(".reveal");
 
-    function openMenu() {
 
-        if (!sideMenu) return;
+    /* =====================================================
+       INTRO
+    ===================================================== */
+
+    body.classList.add("intro-active");
+
+    const finishIntro = () => {
+
+        if (!intro) {
+            body.classList.remove("intro-active");
+            return;
+        }
+
+        intro.classList.add("finished");
+
+        body.classList.remove("intro-active");
+
+    };
+
+
+    setTimeout(finishIntro, 3000);
+
+
+    /* =====================================================
+       HEADER SCROLL
+    ===================================================== */
+
+    const updateHeader = () => {
+
+        if (!header) return;
+
+        if (window.scrollY > 30) {
+            header.classList.add("scrolled");
+        } else {
+            header.classList.remove("scrolled");
+        }
+
+    };
+
+
+    window.addEventListener(
+        "scroll",
+        updateHeader,
+        { passive: true }
+    );
+
+    updateHeader();
+
+
+    /* =====================================================
+       MENU
+    ===================================================== */
+
+    const openMenu = () => {
+
+        if (!sideMenu || !menuOverlay || !menuButton) return;
 
         sideMenu.classList.add("active");
 
-        if (overlay) {
-            overlay.classList.add("active");
-        }
+        menuOverlay.classList.add("active");
 
-        if (menuButton) {
-            menuButton.setAttribute("aria-expanded", "true");
-        }
+        menuButton.classList.add("active");
 
-        document.body.style.overflow = "hidden";
-    }
+        menuButton.setAttribute(
+            "aria-expanded",
+            "true"
+        );
 
+        body.classList.add("menu-open");
 
-    // ==========================================
-    // FECHAR MENU
-    // ==========================================
-
-    function closeSideMenu() {
-
-        if (sideMenu) {
-            sideMenu.classList.remove("active");
-        }
-
-        if (overlay) {
-            overlay.classList.remove("active");
-        }
-
-        if (menuButton) {
-            menuButton.setAttribute("aria-expanded", "false");
-        }
-
-        document.body.style.overflow = "";
-    }
+    };
 
 
-    // ==========================================
-    // BOTÃO MENU
-    // ==========================================
+    const closeSideMenu = () => {
+
+        if (!sideMenu || !menuOverlay || !menuButton) return;
+
+        sideMenu.classList.remove("active");
+
+        menuOverlay.classList.remove("active");
+
+        menuButton.classList.remove("active");
+
+        menuButton.setAttribute(
+            "aria-expanded",
+            "false"
+        );
+
+        body.classList.remove("menu-open");
+
+    };
+
 
     if (menuButton) {
-        menuButton.addEventListener("click", openMenu);
+        menuButton.addEventListener(
+            "click",
+            openMenu
+        );
     }
 
-
-    // ==========================================
-    // BOTÃO FECHAR
-    // ==========================================
 
     if (closeMenu) {
-        closeMenu.addEventListener("click", closeSideMenu);
+        closeMenu.addEventListener(
+            "click",
+            closeSideMenu
+        );
     }
 
 
-    // ==========================================
-    // CLICAR FORA DO MENU
-    // ==========================================
-
-    if (overlay) {
-        overlay.addEventListener("click", closeSideMenu);
+    if (menuOverlay) {
+        menuOverlay.addEventListener(
+            "click",
+            closeSideMenu
+        );
     }
 
-
-    // ==========================================
-    // LINKS DO MENU
-    // ==========================================
 
     menuLinks.forEach(link => {
 
-        link.addEventListener("click", () => {
-            closeSideMenu();
-        });
+        link.addEventListener(
+            "click",
+            closeSideMenu
+        );
 
     });
 
 
-    // ==========================================
-    // BOTÃO CONTACTAR DO MENU
-    // ==========================================
+    document.addEventListener(
+        "keydown",
+        event => {
 
-    if (menuContact) {
+            if (event.key === "Escape") {
+                closeSideMenu();
+            }
 
-        menuContact.addEventListener("click", () => {
-            closeSideMenu();
-        });
-
-    }
-
-
-    // ==========================================
-    // ESC FECHA MENU
-    // ==========================================
-
-    document.addEventListener("keydown", event => {
-
-        if (event.key === "Escape") {
-            closeSideMenu();
         }
-
-    });
-
-
-    // ==========================================
-    // SCROLL SUAVE
-    // ==========================================
-
-    document.querySelectorAll('a[href^="#"]').forEach(link => {
-
-        link.addEventListener("click", event => {
-
-            const targetId = link.getAttribute("href");
-
-            if (!targetId || targetId === "#") {
-                return;
-            }
-
-            const target = document.querySelector(targetId);
-
-            if (!target) {
-                return;
-            }
-
-            event.preventDefault();
-
-            closeSideMenu();
-
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-        });
-
-    });
-
-
-    // ==========================================
-    // ANIMAÇÕES AO ENTRAR NO ECRÃ
-    // ==========================================
-
-    const animatedElements = document.querySelectorAll(
-        ".feature-card, .service-row, .project-card, .value-card, .review-card-big"
     );
 
+
+    /* =====================================================
+       REVEAL ANIMATIONS
+    ===================================================== */
 
     if ("IntersectionObserver" in window) {
 
@@ -172,7 +173,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         entry.target.classList.add("visible");
 
-                        observer.unobserve(entry.target);
+                        observer.unobserve(
+                            entry.target
+                        );
 
                     }
 
@@ -180,92 +183,272 @@ document.addEventListener("DOMContentLoaded", () => {
 
             },
             {
-                threshold: 0.12
+                threshold: 0.12,
+                rootMargin: "0px 0px -50px 0px"
             }
         );
 
 
-        animatedElements.forEach(element => {
-            observer.observe(element);
-        });
+        revealElements.forEach(
+            element => observer.observe(element)
+        );
 
     } else {
 
-        animatedElements.forEach(element => {
-            element.classList.add("visible");
-        });
+        revealElements.forEach(
+            element => element.classList.add("visible")
+        );
 
     }
 
 
-    // ==========================================
-    // HEADER AO FAZER SCROLL
-    // ==========================================
+    /* =====================================================
+       FAQ
+    ===================================================== */
 
-    const header = document.querySelector(".header");
+    const faqItems =
+        document.querySelectorAll(".faq-item");
 
-    function updateHeader() {
 
-        if (!header) {
-            return;
-        }
+    faqItems.forEach(item => {
 
-        if (window.scrollY > 40) {
-            header.classList.add("scrolled");
-        } else {
-            header.classList.remove("scrolled");
-        }
+        item.addEventListener(
+            "toggle",
+            () => {
 
-    }
+                if (!item.open) return;
 
-    window.addEventListener("scroll", updateHeader, {
-        passive: true
+                faqItems.forEach(otherItem => {
+
+                    if (
+                        otherItem !== item &&
+                        otherItem.open
+                    ) {
+                        otherItem.removeAttribute("open");
+                    }
+
+                });
+
+            }
+        );
+
     });
 
-    updateHeader();
+
+    /* =====================================================
+       SMOOTH SCROLL
+    ===================================================== */
+
+    const internalLinks =
+        document.querySelectorAll('a[href^="#"]');
 
 
-    // ==========================================
-    // ANO AUTOMÁTICO DO FOOTER
-    // ==========================================
+    internalLinks.forEach(link => {
 
-    const footerYear = document.querySelector(".footer-bottom span");
+        link.addEventListener(
+            "click",
+            event => {
 
-    if (footerYear) {
+                const targetId =
+                    link.getAttribute("href");
 
-        footerYear.textContent =
-            `© ${new Date().getFullYear()} Darluz Energia e Segurança`;
+                if (
+                    !targetId ||
+                    targetId === "#"
+                ) {
+                    return;
+                }
+
+                const target =
+                    document.querySelector(targetId);
+
+                if (!target) return;
+
+                event.preventDefault();
+
+                closeSideMenu();
+
+                const headerHeight =
+                    header
+                        ? header.offsetHeight
+                        : 0;
+
+                const targetPosition =
+                    target.getBoundingClientRect().top +
+                    window.scrollY -
+                    headerHeight;
+
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: "smooth"
+                });
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       IMAGE ERROR HANDLING
+    ===================================================== */
+
+    const images =
+        document.querySelectorAll("img");
+
+
+    images.forEach(image => {
+
+        image.addEventListener(
+            "error",
+            () => {
+
+                image.classList.add(
+                    "image-error"
+                );
+
+            }
+        );
+
+    });
+
+
+    /* =====================================================
+       ACTIVE MENU SECTION
+    ===================================================== */
+
+    const sections =
+        document.querySelectorAll(
+            "main section[id]"
+        );
+
+
+    const menuSectionLinks =
+        document.querySelectorAll(
+            ".main-menu a[href^='#']"
+        );
+
+
+    if ("IntersectionObserver" in window) {
+
+        const sectionObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (!entry.isIntersecting) {
+                            return;
+                        }
+
+                        const id =
+                            entry.target.getAttribute("id");
+
+                        menuSectionLinks.forEach(link => {
+
+                            link.classList.remove(
+                                "current"
+                            );
+
+                            if (
+                                link.getAttribute("href") ===
+                                `#${id}`
+                            ) {
+                                link.classList.add(
+                                    "current"
+                                );
+                            }
+
+                        });
+
+                    });
+
+                },
+                {
+                    threshold: 0.35
+                }
+            );
+
+
+        sections.forEach(
+            section =>
+                sectionObserver.observe(section)
+        );
 
     }
 
 
-    // ==========================================
-    // ANIMAÇÃO INICIAL DA DARLUZ
-    // ==========================================
+    /* =====================================================
+       CONTACT BUTTON FEEDBACK
+    ===================================================== */
 
-    const intro = document.querySelector(".intro-animation");
+    const contactButtons =
+        document.querySelectorAll(
+            ".contact-button, .header-contact, .menu-button-contact"
+        );
 
-    if (intro) {
 
-        // Bloqueia o scroll enquanto a animação acontece
-        document.body.classList.add("intro-active");
+    contactButtons.forEach(button => {
 
-        // Dá tempo para a animação terminar
-        setTimeout(() => {
+        button.addEventListener(
+            "click",
+            () => {
 
-            intro.classList.add("intro-finished");
+                button.classList.add(
+                    "clicked"
+                );
 
-            document.body.classList.remove("intro-active");
+                setTimeout(
+                    () => {
+                        button.classList.remove(
+                            "clicked"
+                        );
+                    },
+                    400
+                );
 
-        }, 2600);
+            }
+        );
 
-        // Remove completamente a intro depois da transição
-        setTimeout(() => {
+    });
 
-            intro.remove();
 
-        }, 3300);
+    /* =====================================================
+       PARALLAX HERO
+    ===================================================== */
+
+    const heroCircle =
+        document.querySelector(".hero-bg-circle");
+
+
+    if (
+        heroCircle &&
+        window.matchMedia("(min-width: 800px)").matches
+    ) {
+
+        window.addEventListener(
+            "scroll",
+            () => {
+
+                const scroll =
+                    window.scrollY;
+
+                heroCircle.style.transform =
+                    `translateY(${scroll * 0.08}px)`;
+
+            },
+            { passive: true }
+        );
 
     }
+
+
+    /* =====================================================
+       PAGE READY
+    ===================================================== */
+
+    document.documentElement.classList.add(
+        "page-ready"
+    );
 
 });
