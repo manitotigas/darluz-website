@@ -1,394 +1,242 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    // =====================================================
-    // ELEMENTOS PRINCIPAIS
-    // =====================================================
+const menuButton = document.querySelector(".menu-button");
+const closeMenu = document.querySelector(".close-menu");
+const sideMenu = document.querySelector(".side-menu");
+const overlay = document.querySelector(".menu-overlay");
 
-    const menuButton = document.querySelector(".menu-button");
-    const closeMenu = document.querySelector(".close-menu");
-    const sideMenu = document.querySelector(".side-menu");
-    const overlay = document.querySelector(".menu-overlay");
-    const header = document.querySelector(".header");
+const menuLinks = document.querySelectorAll(".main-menu a");
+const menuContact = document.querySelector(".menu-button-contact");
 
-    const menuLinks = document.querySelectorAll(".main-menu a");
-    const menuContact = document.querySelector(".menu-button-contact");
 
-    // =====================================================
-    // MENU LATERAL
-    // =====================================================
+// ==========================================
+// ABRIR MENU
+// ==========================================
 
-    function openMenu() {
+function openMenu() {
 
-        if (!sideMenu) return;
+    if (!sideMenu) return;
 
-        sideMenu.classList.add("active");
+    sideMenu.classList.add("active");
 
-        if (overlay) {
-            overlay.classList.add("active");
-        }
-
-        if (menuButton) {
-            menuButton.setAttribute("aria-expanded", "true");
-        }
-
-        document.body.style.overflow = "hidden";
+    if (overlay) {
+        overlay.classList.add("active");
     }
 
+    if (menuButton) {
+        menuButton.setAttribute("aria-expanded", "true");
+    }
 
-    function closeSideMenu() {
+    document.body.style.overflow = "hidden";
+}
 
-        if (!sideMenu) return;
 
+// ==========================================
+// FECHAR MENU
+// ==========================================
+
+function closeSideMenu() {
+
+    if (sideMenu) {
         sideMenu.classList.remove("active");
-
-        if (overlay) {
-            overlay.classList.remove("active");
-        }
-
-        if (menuButton) {
-            menuButton.setAttribute("aria-expanded", "false");
-        }
-
-        document.body.style.overflow = "";
     }
 
+    if (overlay) {
+        overlay.classList.remove("active");
+    }
 
-    // Abrir
     if (menuButton) {
         menuButton.setAttribute("aria-expanded", "false");
-
-        menuButton.addEventListener("click", openMenu);
     }
 
-
-    // Fechar
-    if (closeMenu) {
-        closeMenu.addEventListener("click", closeSideMenu);
-    }
+    document.body.style.overflow = "";
+}
 
 
-    // Fechar ao clicar no fundo
-    if (overlay) {
-        overlay.addEventListener("click", closeSideMenu);
-    }
+// ==========================================
+// BOTÃO MENU
+// ==========================================
+
+if (menuButton) {
+    menuButton.addEventListener("click", openMenu);
+}
 
 
-    // =====================================================
-    // LINKS DO MENU
-    // =====================================================
+// ==========================================
+// BOTÃO FECHAR
+// ==========================================
 
-    menuLinks.forEach(link => {
+if (closeMenu) {
+    closeMenu.addEventListener("click", closeSideMenu);
+}
 
-        link.addEventListener("click", () => {
 
-            closeSideMenu();
+// ==========================================
+// CLICAR FORA DO MENU
+// ==========================================
 
-        });
+if (overlay) {
+    overlay.addEventListener("click", closeSideMenu);
+}
 
+
+// ==========================================
+// LINKS DO MENU
+// ==========================================
+
+menuLinks.forEach(link => {
+
+    link.addEventListener("click", () => {
+        closeSideMenu();
     });
 
+});
 
-    // Botão falar com a Darluz
-    if (menuContact) {
 
-        menuContact.addEventListener("click", () => {
+// ==========================================
+// BOTÃO CONTACTAR
+// ==========================================
 
-            closeSideMenu();
+if (menuContact) {
 
-        });
+    menuContact.addEventListener("click", () => {
+        closeSideMenu();
+    });
 
+}
+
+
+// ==========================================
+// ESC FECHA MENU
+// ==========================================
+
+document.addEventListener("keydown", event => {
+
+    if (event.key === "Escape") {
+        closeSideMenu();
     }
 
-
-    // =====================================================
-    // ESC FECHA O MENU
-    // =====================================================
-
-    document.addEventListener("keydown", event => {
-
-        if (event.key === "Escape") {
-
-            closeSideMenu();
-
-        }
-
-    });
+});
 
 
-    // =====================================================
-    // SCROLL SUAVE
-    // =====================================================
+// ==========================================
+// SCROLL SUAVE
+// ==========================================
 
-    const anchorLinks = document.querySelectorAll('a[href^="#"]');
+document.querySelectorAll('a[href^="#"]').forEach(link => {
 
-    anchorLinks.forEach(link => {
+    link.addEventListener("click", event => {
 
-        link.addEventListener("click", event => {
+        const targetId = link.getAttribute("href");
 
-            const targetId = link.getAttribute("href");
-
-            if (!targetId || targetId === "#") {
-                return;
-            }
-
-            const target = document.querySelector(targetId);
-
-            if (!target) {
-                return;
-            }
-
-            event.preventDefault();
-
-            closeSideMenu();
-
-            target.scrollIntoView({
-                behavior: "smooth",
-                block: "start"
-            });
-
-        });
-
-    });
-
-
-    // =====================================================
-    // HEADER AO FAZER SCROLL
-    // =====================================================
-
-    function updateHeader() {
-
-        if (!header) {
+        if (!targetId || targetId === "#") {
             return;
         }
 
-        if (window.scrollY > 40) {
+        const target = document.querySelector(targetId);
 
-            header.classList.add("scrolled");
-
-        } else {
-
-            header.classList.remove("scrolled");
-
+        if (!target) {
+            return;
         }
 
-    }
+        event.preventDefault();
 
+        closeSideMenu();
 
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        { passive: true }
-    );
-
-    updateHeader();
-
-
-    // =====================================================
-    // ANIMAÇÕES AO ENTRAR NO ECRÃ
-    // =====================================================
-
-    const animatedElements = document.querySelectorAll(
-        ".feature-card, " +
-        ".service-row, " +
-        ".project-card, " +
-        ".value-card, " +
-        ".review-card-big, " +
-        ".about-visual, " +
-        ".about-text, " +
-        ".contact-card"
-    );
-
-
-    if ("IntersectionObserver" in window) {
-
-        const observer = new IntersectionObserver(
-            entries => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("visible");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.12
-            }
-        );
-
-
-        animatedElements.forEach(element => {
-
-            observer.observe(element);
-
+        target.scrollIntoView({
+            behavior: "smooth",
+            block: "start"
         });
 
+    });
+
+});
+
+
+// ==========================================
+// ANIMAÇÕES AO ENTRAR NO ECRÃ
+// ==========================================
+
+const animatedElements = document.querySelectorAll(
+    ".feature-card, .service-row, .project-card, .value-card, .review-card-big"
+);
+
+
+if ("IntersectionObserver" in window) {
+
+    const observer = new IntersectionObserver(
+        entries => {
+
+            entries.forEach(entry => {
+
+                if (entry.isIntersecting) {
+
+                    entry.target.classList.add("visible");
+
+                    observer.unobserve(entry.target);
+
+                }
+
+            });
+
+        },
+        {
+            threshold: 0.12
+        }
+    );
+
+
+    animatedElements.forEach(element => {
+        observer.observe(element);
+    });
+
+} else {
+
+    animatedElements.forEach(element => {
+        element.classList.add("visible");
+    });
+
+}
+
+
+// ==========================================
+// HEADER AO FAZER SCROLL
+// ==========================================
+
+const header = document.querySelector(".header");
+
+function updateHeader() {
+
+    if (!header) {
+        return;
+    }
+
+    if (window.scrollY > 40) {
+        header.classList.add("scrolled");
     } else {
-
-        animatedElements.forEach(element => {
-
-            element.classList.add("visible");
-
-        });
-
+        header.classList.remove("scrolled");
     }
 
+}
 
-    // =====================================================
-    // BOTÕES DE CONTACTO
-    // =====================================================
+window.addEventListener("scroll", updateHeader, {
+    passive: true
+});
 
-    const contactLinks = document.querySelectorAll(
-        'a[href^="mailto:"], a[href^="tel:"]'
-    );
+updateHeader();
 
 
-    contactLinks.forEach(link => {
+// ==========================================
+// ANO AUTOMÁTICO
+// ==========================================
 
-        link.addEventListener("click", () => {
+const footerYear = document.querySelector(".footer-bottom span");
 
-            closeSideMenu();
+if (footerYear) {
 
-        });
+    footerYear.textContent =
+        `© ${new Date().getFullYear()} Darluz Energia e Segurança`;
 
-    });
-
-
-    // =====================================================
-    // CONTACTAR DARLUZ
-    // =====================================================
-
-    const contactButton = document.querySelector(".contact-button");
-
-    if (contactButton) {
-
-        contactButton.addEventListener("click", () => {
-
-            closeSideMenu();
-
-        });
-
-    }
-
-
-    // =====================================================
-    // BOTÕES "EXPLORAR"
-    // =====================================================
-
-    const exploreLinks = document.querySelectorAll(
-        '.feature-content a, .text-link'
-    );
-
-
-    exploreLinks.forEach(link => {
-
-        link.addEventListener("click", () => {
-
-            closeSideMenu();
-
-        });
-
-    });
-
-
-    // =====================================================
-    // PROJETOS CLICÁVEIS
-    // =====================================================
-
-    const projectCards = document.querySelectorAll(".project-card");
-
-
-    projectCards.forEach(card => {
-
-        card.addEventListener("click", () => {
-
-            const projectsSection =
-                document.querySelector("#projetos");
-
-            if (projectsSection) {
-
-                projectsSection.scrollIntoView({
-                    behavior: "smooth",
-                    block: "start"
-                });
-
-            }
-
-        });
-
-    });
-
-
-    // =====================================================
-    // ANO AUTOMÁTICO DO FOOTER
-    // =====================================================
-
-    const footerYear = document.querySelector(
-        ".footer-bottom span"
-    );
-
-
-    if (footerYear) {
-
-        footerYear.textContent =
-            `© ${new Date().getFullYear()} Darluz Energia e Segurança`;
-
-    }
-
-
-    // =====================================================
-    // DETETAR REDUÇÃO DE MOVIMENTO
-    // =====================================================
-
-    const reducedMotion =
-        window.matchMedia(
-            "(prefers-reduced-motion: reduce)"
-        );
-
-
-    if (reducedMotion.matches) {
-
-        document.documentElement.style.scrollBehavior =
-            "auto";
-
-    }
-
-
-    // =====================================================
-    // FECHAR MENU SE A JANELA FICAR GRANDE
-    // =====================================================
-
-    window.addEventListener("resize", () => {
-
-        if (window.innerWidth >= 800) {
-
-            closeSideMenu();
-
-        }
-
-    });
-
-
-    // =====================================================
-    // PREVENIR SCROLL HORIZONTAL ACIDENTAL
-    // =====================================================
-
-    document.documentElement.style.overflowX = "hidden";
-    document.body.style.overflowX = "hidden";
-
-
-    // =====================================================
-    // LOG
-    // =====================================================
-
-    console.log(
-        "Darluz Energia & Segurança | Website carregado."
-    );
+}
 
 });
