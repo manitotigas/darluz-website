@@ -2,6 +2,7 @@
     --blue: #0876d1;
     --blue-dark: #03182d;
     --blue-deep: #020d19;
+    --blue-light: #1597ef;
     --yellow: #ffc400;
     --yellow-light: #ffd83d;
     --white: #ffffff;
@@ -9,7 +10,6 @@
     --muted: #91a9c0;
     --card: #0a2947;
     --border: rgba(255,255,255,0.1);
-    --shadow: 0 20px 60px rgba(0,0,0,0.25);
 }
 
 * {
@@ -33,8 +33,6 @@ body {
 
     background: var(--blue-deep);
     color: var(--white);
-
-    -webkit-font-smoothing: antialiased;
 }
 
 body,
@@ -92,42 +90,6 @@ p {
 }
 
 /* =====================================================
-   ANIMAÇÕES
-===================================================== */
-
-@keyframes fadeUp {
-    from {
-        opacity: 0;
-        transform: translateY(25px);
-    }
-
-    to {
-        opacity: 1;
-        transform: translateY(0);
-    }
-}
-
-@keyframes float {
-    0%, 100% {
-        transform: translateY(0);
-    }
-
-    50% {
-        transform: translateY(-10px);
-    }
-}
-
-@keyframes pulse {
-    0%, 100% {
-        box-shadow: 0 0 0 0 rgba(255,196,0,0.25);
-    }
-
-    50% {
-        box-shadow: 0 0 0 14px rgba(255,196,0,0);
-    }
-}
-
-/* =====================================================
    HEADER
 ===================================================== */
 
@@ -177,9 +139,8 @@ p {
     transition: 0.25s;
 }
 
-.menu-button:hover,
-.menu-button:active {
-    background: var(--yellow);
+.menu-button:hover {
+    background: rgba(255,255,255,0.15);
     transform: scale(1.04);
 }
 
@@ -196,10 +157,9 @@ p {
     transition: 0.25s;
 }
 
-.menu-button:hover span,
-.menu-button:active span {
-    background: var(--blue-dark);
-}
+/* =====================================================
+   LOGO
+===================================================== */
 
 .brand {
     min-width: 0;
@@ -209,6 +169,13 @@ p {
     align-items: center;
 
     text-align: center;
+}
+
+.brand-logo {
+    width: 105px;
+    height: auto;
+
+    object-fit: contain;
 }
 
 .brand strong {
@@ -250,7 +217,7 @@ p {
 
 .header-contact:hover {
     transform: translateY(-2px);
-    box-shadow: 0 8px 25px rgba(255,196,0,0.25);
+    box-shadow: 0 8px 20px rgba(255,196,0,0.2);
 }
 
 /* =====================================================
@@ -261,7 +228,7 @@ p {
     position: fixed;
     inset: 0;
 
-    background: rgba(0,0,0,0.72);
+    background: rgba(0,0,0,0.68);
 
     opacity: 0;
     visibility: hidden;
@@ -288,13 +255,7 @@ p {
     display: flex;
     flex-direction: column;
 
-    background:
-        radial-gradient(
-            circle at 20% 20%,
-            rgba(8,118,209,0.18),
-            transparent 30%
-        ),
-        #061c34;
+    background: #061c34;
 
     transform: translateX(-105%);
 
@@ -302,8 +263,6 @@ p {
 
     overflow-y: auto;
     overflow-x: hidden;
-
-    box-shadow: 20px 0 70px rgba(0,0,0,0.35);
 }
 
 .side-menu.active {
@@ -327,6 +286,10 @@ p {
     align-items: flex-start;
 }
 
+.menu-brand .brand-logo {
+    width: 120px;
+}
+
 .close-menu {
     width: 42px;
     height: 42px;
@@ -341,13 +304,12 @@ p {
 
     font-size: 27px;
 
-    transition: 0.25s;
+    transition: 0.2s;
 }
 
 .close-menu:hover {
     background: var(--yellow);
     color: var(--blue-dark);
-    transform: rotate(90deg);
 }
 
 .main-menu {
@@ -372,12 +334,12 @@ p {
     font-size: 20px;
     font-weight: 800;
 
-    transition: 0.25s;
+    transition: 0.2s;
 }
 
 .main-menu a:hover {
     color: var(--yellow);
-    padding-left: 6px;
+    padding-left: 5px;
 }
 
 .main-menu a span {
@@ -432,8 +394,7 @@ p {
 }
 
 .menu-button-contact:hover {
-    transform: translateY(-3px);
-    box-shadow: 0 10px 30px rgba(255,196,0,0.25);
+    transform: translateY(-2px);
 }
 
 /* =====================================================
@@ -487,26 +448,6 @@ p {
     border-radius: 50%;
 
     pointer-events: none;
-
-    animation: float 6s ease-in-out infinite;
-}
-
-/* LOGO NO HERO */
-
-.hero-logo {
-    width: 150px;
-    height: 150px;
-
-    margin-bottom: 25px;
-
-    object-fit: contain;
-
-    filter:
-        drop-shadow(0 12px 30px rgba(0,0,0,0.35));
-
-    animation:
-        fadeUp 0.8s ease forwards,
-        float 5s ease-in-out 1s infinite;
 }
 
 .hero-content {
@@ -515,8 +456,31 @@ p {
 
     width: 100%;
     max-width: 700px;
+}
 
-    animation: fadeUp 0.8s ease forwards;
+.hero-logo {
+    width: 180px;
+    max-width: 65%;
+
+    margin-bottom: 25px;
+
+    object-fit: contain;
+
+    filter: drop-shadow(0 12px 30px rgba(0,0,0,0.25));
+
+    animation: heroLogoIn 0.8s ease both;
+}
+
+@keyframes heroLogoIn {
+    from {
+        opacity: 0;
+        transform: translateY(15px) scale(0.96);
+    }
+
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 .hero-tag {
@@ -606,7 +570,7 @@ p {
 
 .primary-button:hover {
     transform: translateY(-3px);
-    box-shadow: 0 16px 35px rgba(255,196,0,0.3);
+    box-shadow: 0 16px 35px rgba(255,196,0,0.25);
 }
 
 .primary-button span {
@@ -621,7 +585,7 @@ p {
 
 .secondary-button:hover {
     background: rgba(255,255,255,0.12);
-    transform: translateY(-3px);
+    transform: translateY(-2px);
 }
 
 .hero-card {
@@ -645,8 +609,21 @@ p {
     backdrop-filter: blur(15px);
 
     border-radius: 16px;
+}
 
-    box-shadow: var(--shadow);
+.hero-card-logo {
+    width: 45px;
+    height: 45px;
+
+    flex-shrink: 0;
+
+    padding: 5px;
+
+    object-fit: contain;
+
+    border-radius: 12px;
+
+    background: white;
 }
 
 .hero-card-icon {
@@ -665,8 +642,6 @@ p {
     color: var(--blue-dark);
 
     font-size: 21px;
-
-    animation: pulse 3s infinite;
 }
 
 .hero-card strong,
@@ -690,17 +665,22 @@ p {
 .scroll-indicator {
     position: absolute;
 
-    bottom: 22px;
-    left: 18px;
+    z-index: 3;
+
+    bottom: 25px;
+    left: 50%;
+
+    transform: translateX(-50%);
 
     display: flex;
+    flex-direction: column;
     align-items: center;
 
-    gap: 8px;
+    gap: 5px;
 
-    color: rgba(255,255,255,0.5);
+    color: rgba(255,255,255,0.45);
 
-    font-size: 8px;
+    font-size: 7px;
     font-weight: 900;
 
     letter-spacing: 2px;
@@ -708,7 +688,19 @@ p {
 
 .scroll-indicator b {
     color: var(--yellow);
-    font-size: 15px;
+    font-size: 16px;
+
+    animation: scrollArrow 1.5s infinite;
+}
+
+@keyframes scrollArrow {
+    0%,100% {
+        transform: translateY(0);
+    }
+
+    50% {
+        transform: translateY(5px);
+    }
 }
 
 /* =====================================================
@@ -717,28 +709,34 @@ p {
 
 .highlight-section {
     padding: 80px 18px;
+
     background: var(--blue-deep);
 }
 
 .section-intro {
     width: 100%;
+
     margin-bottom: 32px;
 }
 
 .section-intro > span {
     color: var(--yellow);
+
     font-size: 8px;
     font-weight: 900;
+
     letter-spacing: 3px;
 }
 
 .section-intro h2 {
     width: 100%;
+
     margin-top: 10px;
 
     font-size: clamp(34px,9vw,60px);
 
     line-height: 1.02;
+
     letter-spacing: -1px;
 }
 
@@ -750,6 +748,7 @@ p {
     width: 100%;
 
     display: grid;
+
     grid-template-columns: 1fr;
 
     gap: 14px;
@@ -772,7 +771,8 @@ p {
 
 .feature-card:hover {
     transform: translateY(-6px);
-    box-shadow: var(--shadow);
+
+    box-shadow: 0 20px 40px rgba(0,0,0,0.18);
 }
 
 .feature-number {
@@ -812,6 +812,7 @@ p {
 
 .feature-content h3 {
     font-size: clamp(27px,7vw,42px);
+
     line-height: 1;
 
     margin-bottom: 8px;
@@ -832,12 +833,6 @@ p {
 .feature-content a {
     font-size: 11px;
     font-weight: 900;
-
-    transition: 0.2s;
-}
-
-.feature-content a:hover {
-    letter-spacing: 0.5px;
 }
 
 .feature-blue {
@@ -846,6 +841,7 @@ p {
 
 .feature-yellow {
     background: linear-gradient(145deg,#ffc400,#e5a800);
+
     color: var(--blue-dark);
 }
 
@@ -867,6 +863,7 @@ p {
     padding: 85px 18px;
 
     display: grid;
+
     grid-template-columns: 1fr;
 
     gap: 40px;
@@ -889,20 +886,25 @@ p {
     overflow: hidden;
 
     background: radial-gradient(circle,#0a79d5,#03182d 65%);
-
-    box-shadow: var(--shadow);
 }
 
-.about-visual img {
-    width: 55%;
-    max-width: 240px;
+.about-image {
+    position: absolute;
 
-    object-fit: contain;
+    inset: 0;
 
-    filter: drop-shadow(0 15px 30px rgba(0,0,0,0.35));
+    width: 100%;
+    height: 100%;
+
+    object-fit: cover;
+
+    opacity: 0.45;
 }
 
 .about-circle {
+    position: relative;
+    z-index: 2;
+
     width: 210px;
     height: 210px;
 
@@ -1011,6 +1013,7 @@ p {
 
 .section-header {
     width: 100%;
+
     margin-bottom: 35px;
 }
 
@@ -1077,7 +1080,6 @@ p {
 .service-row:hover {
     transform: translateX(5px);
     background: white;
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
 }
 
 .service-icon {
@@ -1136,12 +1138,6 @@ p {
 
 .service-arrow {
     font-size: 21px;
-
-    transition: 0.25s;
-}
-
-.service-row:hover .service-arrow {
-    transform: translate(4px,-4px);
 }
 
 /* =====================================================
@@ -1170,6 +1166,7 @@ p {
     width: 100%;
 
     display: grid;
+
     grid-template-columns: 1fr;
 
     gap: 15px;
@@ -1189,8 +1186,8 @@ p {
 }
 
 .project-card:hover {
-    transform: translateY(-6px);
-    box-shadow: var(--shadow);
+    transform: translateY(-5px);
+    box-shadow: 0 20px 40px rgba(0,0,0,0.25);
 }
 
 .project-visual {
@@ -1206,20 +1203,36 @@ p {
     overflow: hidden;
 }
 
-.project-visual img {
+.project-image {
+    position: absolute;
+
+    inset: 0;
+
     width: 100%;
     height: 100%;
-
-    position: absolute;
-    inset: 0;
 
     object-fit: cover;
 
     transition: transform 0.5s;
 }
 
-.project-card:hover .project-visual img {
-    transform: scale(1.06);
+.project-card:hover .project-image {
+    transform: scale(1.05);
+}
+
+.project-visual::after {
+    content: "";
+
+    position: absolute;
+    inset: 0;
+
+    background: linear-gradient(
+        to top,
+        rgba(0,0,0,0.35),
+        transparent
+    );
+
+    pointer-events: none;
 }
 
 .project-visual span {
@@ -1294,14 +1307,6 @@ p {
     background: rgba(255,255,255,0.08);
 
     color: var(--yellow);
-
-    transition: 0.25s;
-}
-
-.project-card:hover .project-info b {
-    background: var(--yellow);
-    color: var(--blue-dark);
-    transform: rotate(45deg);
 }
 
 /* =====================================================
@@ -1361,14 +1366,12 @@ p {
 }
 
 .value-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 12px 30px rgba(0,0,0,0.12);
+    transform: translateY(-4px);
 }
 
 .value-card span {
     font-size: 9px;
     font-weight: 900;
-
     opacity: 0.5;
 }
 
@@ -1464,13 +1467,6 @@ p {
     border: 1px solid rgba(255,255,255,0.08);
 
     overflow: hidden;
-
-    transition: 0.25s;
-}
-
-.review-card-big:hover {
-    transform: translateY(-5px);
-    box-shadow: var(--shadow);
 }
 
 .yellow-review {
@@ -1542,7 +1538,7 @@ p {
 }
 
 /* =====================================================
-   CONTACTO
+   CONTACT
 ===================================================== */
 
 .contact-section {
@@ -1563,8 +1559,22 @@ p {
     background: linear-gradient(135deg,#0879d5,#043a70);
 
     overflow: hidden;
+}
 
-    box-shadow: var(--shadow);
+.contact-card::before {
+    content: "";
+
+    position: absolute;
+
+    width: 180px;
+    height: 180px;
+
+    left: -100px;
+    bottom: -100px;
+
+    border-radius: 50%;
+
+    background: rgba(255,255,255,0.05);
 }
 
 .contact-card::after {
@@ -1655,8 +1665,9 @@ p {
 }
 
 .contact-button:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 15px 35px rgba(0,0,0,0.2);
+    transform: translateY(-3px);
+
+    box-shadow: 0 12px 25px rgba(255,196,0,0.25);
 }
 
 /* =====================================================
@@ -1696,6 +1707,13 @@ p {
     letter-spacing: 2px;
 }
 
+.footer-logo {
+    width: 140px;
+    height: auto;
+
+    object-fit: contain;
+}
+
 .footer-slogan {
     max-width: 150px;
 
@@ -1726,6 +1744,49 @@ p {
 }
 
 /* =====================================================
+   IMAGE FALLBACK
+===================================================== */
+
+.image-placeholder {
+    width: 100%;
+    height: 100%;
+
+    min-height: 250px;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    background:
+        radial-gradient(
+            circle at center,
+            rgba(8,118,209,0.7),
+            rgba(2,13,25,0.95)
+        );
+
+    color: var(--yellow);
+
+    font-size: 50px;
+}
+
+/* =====================================================
+   MOBILE TOUCH
+===================================================== */
+
+@media (hover: none) {
+
+    .feature-card:hover,
+    .project-card:hover,
+    .value-card:hover,
+    .service-row:hover,
+    .contact-button:hover,
+    .primary-button:hover,
+    .secondary-button:hover {
+        transform: none;
+    }
+}
+
+/* =====================================================
    DESKTOP
 ===================================================== */
 
@@ -1741,13 +1802,16 @@ p {
         height: 47px;
     }
 
+    .brand-logo {
+        width: 130px;
+    }
+
     .hero {
         padding: 170px 9% 100px;
     }
 
     .hero-logo {
-        width: 190px;
-        height: 190px;
+        width: 230px;
     }
 
     .hero h1 {
@@ -1883,6 +1947,33 @@ p {
 }
 
 /* =====================================================
+   LARGE SCREENS
+===================================================== */
+
+@media (min-width: 1200px) {
+
+    .hero-content {
+        max-width: 850px;
+    }
+
+    .hero-logo {
+        width: 260px;
+    }
+
+    .hero-card {
+        width: 310px;
+    }
+
+    .feature-card {
+        min-height: 430px;
+    }
+
+    .project-large .project-visual {
+        min-height: 580px;
+    }
+}
+
+/* =====================================================
    SMALL PHONES
 ===================================================== */
 
@@ -1897,8 +1988,12 @@ p {
         letter-spacing: 2px;
     }
 
+    .brand-logo {
+        width: 90px;
+    }
+
     .header-contact {
-        padding: 9px;
+        padding: 9px 9px;
         font-size: 7px;
     }
 
@@ -1908,8 +2003,7 @@ p {
     }
 
     .hero-logo {
-        width: 125px;
-        height: 125px;
+        width: 150px;
     }
 
     .hero h1 {
@@ -1941,9 +2035,5 @@ p {
 
     .footer-slogan {
         text-align: left;
-    }
-
-    .footer-bottom {
-        flex-direction: column;
     }
         }
