@@ -1,42 +1,69 @@
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* ==========================================
-       MENU LATERAL
-    ========================================== */
-
     const menuButton = document.querySelector(".menu-button");
     const closeMenu = document.querySelector(".close-menu");
     const sideMenu = document.querySelector(".side-menu");
-    const menuOverlay = document.querySelector(".menu-overlay");
+    const overlay = document.querySelector(".menu-overlay");
+
+    const menuLinks = document.querySelectorAll(".main-menu a");
+    const menuContact = document.querySelector(".menu-button-contact");
+
+    // ==========================================
+    // ABRIR MENU
+    // ==========================================
 
     function openMenu() {
         sideMenu.classList.add("active");
+
+        menuButton.setAttribute("aria-expanded", "true");
+
         document.body.style.overflow = "hidden";
     }
 
+
+    // ==========================================
+    // FECHAR MENU
+    // ==========================================
+
     function closeSideMenu() {
         sideMenu.classList.remove("active");
+
+        menuButton.setAttribute("aria-expanded", "false");
+
         document.body.style.overflow = "";
     }
+
+
+    // ==========================================
+    // BOTÃO MENU
+    // ==========================================
 
     if (menuButton) {
         menuButton.addEventListener("click", openMenu);
     }
 
+
+    // ==========================================
+    // BOTÃO FECHAR
+    // ==========================================
+
     if (closeMenu) {
         closeMenu.addEventListener("click", closeSideMenu);
     }
 
-    if (menuOverlay) {
-        menuOverlay.addEventListener("click", closeSideMenu);
+
+    // ==========================================
+    // CLICAR FORA DO MENU
+    // ==========================================
+
+    if (overlay) {
+        overlay.addEventListener("click", closeSideMenu);
     }
 
 
-    /* ==========================================
-       LINKS DO MENU
-    ========================================== */
-
-    const menuLinks = document.querySelectorAll(".main-menu a");
+    // ==========================================
+    // LINKS DO MENU
+    // ==========================================
 
     menuLinks.forEach(link => {
 
@@ -47,13 +74,37 @@ document.addEventListener("DOMContentLoaded", () => {
     });
 
 
-    /* ==========================================
-       TODOS OS LINKS INTERNOS
-    ========================================== */
+    // ==========================================
+    // BOTÃO "FALAR COM A DARLUZ"
+    // ==========================================
 
-    const internalLinks = document.querySelectorAll('a[href^="#"]');
+    if (menuContact) {
 
-    internalLinks.forEach(link => {
+        menuContact.addEventListener("click", () => {
+            closeSideMenu();
+        });
+
+    }
+
+
+    // ==========================================
+    // FECHAR MENU COM ESC
+    // ==========================================
+
+    document.addEventListener("keydown", event => {
+
+        if (event.key === "Escape") {
+            closeSideMenu();
+        }
+
+    });
+
+
+    // ==========================================
+    // SCROLL SUAVE
+    // ==========================================
+
+    document.querySelectorAll('a[href^="#"]').forEach(link => {
 
         link.addEventListener("click", event => {
 
@@ -65,58 +116,32 @@ document.addEventListener("DOMContentLoaded", () => {
 
             const target = document.querySelector(targetId);
 
-            if (target) {
-
-                event.preventDefault();
-
-                const headerHeight = document.querySelector(".header")
-                    ? document.querySelector(".header").offsetHeight
-                    : 0;
-
-                const position =
-                    target.getBoundingClientRect().top +
-                    window.scrollY -
-                    headerHeight;
-
-                window.scrollTo({
-                    top: position,
-                    behavior: "smooth"
-                });
-
+            if (!target) {
+                return;
             }
 
-        });
+            event.preventDefault();
 
-    });
+            closeSideMenu();
 
-
-    /* ==========================================
-       CONTACTAR-NOS
-    ========================================== */
-
-    const contactButtons = document.querySelectorAll(
-        ".contact-button, .header-contact, .menu-button-contact"
-    );
-
-    contactButtons.forEach(button => {
-
-        button.addEventListener("click", () => {
-
-            // O link mailto do HTML será utilizado normalmente.
-            // Esta função apenas garante que o clique funciona.
+            target.scrollIntoView({
+                behavior: "smooth",
+                block: "start"
+            });
 
         });
 
     });
 
 
-    /* ==========================================
-       ANIMAÇÃO DOS CARDS AO APARECEREM
-    ========================================== */
+    // ==========================================
+    // ANIMAÇÃO AO ENTRAR NO ECRÃ
+    // ==========================================
 
-    const animatedCards = document.querySelectorAll(
+    const animatedElements = document.querySelectorAll(
         ".feature-card, .service-row, .project-card, .value-card, .review-card-big"
     );
+
 
     const observer = new IntersectionObserver(
         entries => {
@@ -139,50 +164,40 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     );
 
-    animatedCards.forEach(card => {
-        observer.observe(card);
+
+    animatedElements.forEach(element => {
+        observer.observe(element);
     });
 
 
-    /* ==========================================
-       HEADER AO FAZER SCROLL
-    ========================================== */
+    // ==========================================
+    // HEADER AO FAZER SCROLL
+    // ==========================================
 
     const header = document.querySelector(".header");
 
-    window.addEventListener("scroll", () => {
+    function updateHeader() {
 
-        if (!header) return;
+        if (!header) {
+            return;
+        }
 
-        if (window.scrollY > 50) {
-
+        if (window.scrollY > 40) {
             header.classList.add("scrolled");
-
         } else {
-
             header.classList.remove("scrolled");
-
         }
 
-    });
+    }
+
+    window.addEventListener("scroll", updateHeader);
+
+    updateHeader();
 
 
-    /* ==========================================
-       ESC PARA FECHAR MENU
-    ========================================== */
-
-    document.addEventListener("keydown", event => {
-
-        if (event.key === "Escape") {
-            closeSideMenu();
-        }
-
-    });
-
-
-    /* ==========================================
-       ANO AUTOMÁTICO NO FOOTER
-    ========================================== */
+    // ==========================================
+    // ANO AUTOMÁTICO NO FOOTER
+    // ==========================================
 
     const footerYear = document.querySelector(".footer-bottom span");
 
@@ -192,6 +207,5 @@ document.addEventListener("DOMContentLoaded", () => {
             `© ${new Date().getFullYear()} Darluz Energia e Segurança`;
 
     }
-
 
 });
