@@ -1,1380 +1,2530 @@
-<!DOCTYPE html>
-<html lang="pt-PT">
+:root {
+    --blue: #0876d1;
+    --blue-dark: #03182d;
+    --blue-deep: #020d19;
+    --blue-light: #1597ef;
+
+    --yellow: #ffc400;
+    --yellow-light: #ffd83d;
+
+    --white: #ffffff;
+    --text: #eaf4ff;
+    --muted: #91a9c0;
+
+    --card: #0a2947;
+
+    --border: rgba(255,255,255,0.1);
+}
+
+
+/* =====================================================
+   RESET
+===================================================== */
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    width: 100%;
+    overflow-x: hidden;
+}
+
+body {
+    width: 100%;
+    min-width: 0;
+    overflow-x: hidden;
+
+    font-family:
+        Arial,
+        Helvetica,
+        sans-serif;
+
+    background: var(--blue-deep);
+    color: var(--white);
+}
+
+body.intro-active {
+    overflow: hidden;
+}
+
+body,
+button,
+a {
+    -webkit-tap-highlight-color: transparent;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+button {
+    border: 0;
+    cursor: pointer;
+    font-family: inherit;
+}
+
+img {
+    display: block;
+    max-width: 100%;
+}
+
+main,
+section,
+header,
+footer {
+    width: 100%;
+    min-width: 0;
+    max-width: 100%;
+}
+
+h1,
+h2,
+h3,
+p,
+span,
+a,
+strong,
+blockquote {
+    min-width: 0;
+    max-width: 100%;
+}
+
+p {
+    overflow-wrap: break-word;
+}
+
+
+/* =====================================================
+   INTRO ANIMATION
+===================================================== */
 
-<head>
-    <meta charset="UTF-8">
+.intro-animation {
+    position: fixed;
+    z-index: 99999;
 
-    <meta
-        name="viewport"
-        content="width=device-width, initial-scale=1.0"
-    >
+    inset: 0;
 
-    <title>Darluz | Energia & Segurança</title>
+    width: 100%;
+    height: 100svh;
 
-    <meta
-        name="description"
-        content="Darluz Energia e Segurança. Soluções profissionais de energia, segurança, manutenção, consultoria e instalações."
-    >
+    display: flex;
+    align-items: center;
+    justify-content: center;
 
-    <link rel="stylesheet" href="style.css">
-</head>
+    overflow: hidden;
 
-<body>
+    background:
+        radial-gradient(
+            circle at center,
+            #0b3d6d 0%,
+            #03182d 45%,
+            #010a14 100%
+        );
 
-<!-- =====================================================
-     INTRO / ANIMAÇÃO INICIAL
-===================================================== -->
+    transition:
+        opacity 0.7s ease,
+        visibility 0.7s ease;
+}
 
-<div class="intro-animation">
+.intro-animation::before {
+    content: "";
 
-    <div class="intro-content">
+    position: absolute;
 
-        <img
-            src="logo.png"
-            alt="Darluz"
-            class="intro-logo"
-        >
+    width: 600px;
+    height: 600px;
 
-        <div class="intro-line"></div>
+    border-radius: 50%;
 
-        <div class="intro-title">
-            DARLUZ
-        </div>
+    border:
+        100px solid
+        rgba(255,196,0,0.045);
 
-        <div class="intro-subtitle">
-            ENERGIA & SEGURANÇA
-        </div>
+    animation:
+        introCircle 6s ease-in-out infinite;
+}
 
-    </div>
+.intro-content {
+    position: relative;
+    z-index: 2;
 
-</div>
+    width: 100%;
 
+    display: flex;
+    flex-direction: column;
+    align-items: center;
 
-<!-- =====================================================
-     HEADER
-===================================================== -->
+    overflow: hidden;
+}
 
-<header class="header">
+.intro-logo {
+    width: min(280px, 65vw);
 
-    <button
-        class="menu-button"
-        aria-label="Abrir menu"
-        aria-expanded="false"
-        type="button"
-    >
-        <span></span>
-        <span></span>
-        <span></span>
-    </button>
+    height: auto;
 
+    object-fit: contain;
 
-    <a href="#inicio" class="brand">
+    opacity: 0;
 
-        <img
-            src="logo.png"
-            alt="Darluz Energia e Segurança"
-            class="brand-logo"
-        >
+    transform:
+        translateX(-120vw);
 
-    </a>
+    filter:
+        drop-shadow(
+            0 15px 35px rgba(0,0,0,0.35)
+        );
 
+    animation:
+        introLogoIn
+        1s
+        cubic-bezier(.77,0,.18,1)
+        0.15s
+        forwards;
+}
 
-    <a
-        href="#contactos"
-        class="header-contact"
-    >
-        CONTACTAR
-    </a>
+.intro-line {
+    width: 0;
+    height: 2px;
 
-</header>
+    margin-top: 18px;
 
+    background: var(--yellow);
 
-<div class="menu-overlay"></div>
+    animation:
+        introLine
+        0.6s
+        ease
+        1.15s
+        forwards;
+}
 
+.intro-title {
+    margin-top: 18px;
 
-<!-- =====================================================
-     MENU LATERAL
-===================================================== -->
+    color: white;
 
-<aside class="side-menu">
+    font-size:
+        clamp(25px,8vw,55px);
 
-    <div class="menu-top">
-
-        <a
-            href="#inicio"
-            class="brand menu-brand"
-        >
+    font-weight: 900;
 
-            <img
-                src="logo.png"
-                alt="Darluz"
-                class="menu-logo"
-            >
+    letter-spacing: 5px;
 
-        </a>
+    opacity: 0;
 
+    transform:
+        translateX(-120vw);
 
-        <button
-            class="close-menu"
-            aria-label="Fechar menu"
-            type="button"
-        >
-            ×
-        </button>
+    animation:
+        introTextIn
+        0.9s
+        cubic-bezier(.77,0,.18,1)
+        1.25s
+        forwards;
+}
 
-    </div>
+.intro-subtitle {
+    margin-top: 5px;
 
+    color: var(--yellow);
 
-    <nav class="main-menu">
+    font-size:
+        clamp(9px,2.5vw,15px);
 
-        <a href="#inicio">
-            <span>01</span>
-            <strong>Início</strong>
-            <b>→</b>
-        </a>
+    font-weight: 900;
 
-        <a href="#sobre">
-            <span>02</span>
-            <strong>Sobre Nós</strong>
-            <b>→</b>
-        </a>
+    letter-spacing: 3px;
 
-        <a href="#servicos">
-            <span>03</span>
-            <strong>Serviços</strong>
-            <b>→</b>
-        </a>
+    opacity: 0;
 
-        <a href="#projetos">
-            <span>04</span>
-            <strong>Projetos</strong>
-            <b>→</b>
-        </a>
+    transform:
+        translateX(-120vw);
 
-        <a href="#trabalhos">
-            <span>05</span>
-            <strong>Trabalhos</strong>
-            <b>→</b>
-        </a>
+    animation:
+        introTextIn
+        0.9s
+        cubic-bezier(.77,0,.18,1)
+        1.4s
+        forwards;
+}
 
-        <a href="#faq">
-            <span>06</span>
-            <strong>FAQ</strong>
-            <b>→</b>
-        </a>
+.intro-finished {
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+}
 
-        <a href="#feedbacks">
-            <span>07</span>
-            <strong>Feedbacks</strong>
-            <b>→</b>
-        </a>
+@keyframes introLogoIn {
 
-        <a href="#contactos">
-            <span>08</span>
-            <strong>Contactos</strong>
-            <b>→</b>
-        </a>
+    0% {
+        opacity: 0;
+        transform:
+            translateX(-120vw)
+            scale(0.85);
+    }
 
-    </nav>
+    70% {
+        opacity: 1;
+        transform:
+            translateX(15px)
+            scale(1.02);
+    }
 
+    100% {
+        opacity: 1;
+        transform:
+            translateX(0)
+            scale(1);
+    }
+}
 
-    <div class="menu-bottom">
+@keyframes introTextIn {
 
-        <p>
-            ENERGIA.<br>
-            SEGURANÇA.<br>
-            CONFIANÇA.
-        </p>
+    0% {
+        opacity: 0;
+        transform: translateX(-120vw);
+    }
 
-        <a
-            href="#contactos"
-            class="menu-button-contact"
-        >
-            Falar com a Darluz →
-        </a>
+    70% {
+        opacity: 1;
+        transform: translateX(12px);
+    }
 
-    </div>
+    100% {
+        opacity: 1;
+        transform: translateX(0);
+    }
+}
 
-</aside>
+@keyframes introLine {
 
+    from {
+        width: 0;
+    }
 
-<!-- =====================================================
-     MAIN
-===================================================== -->
+    to {
+        width: min(180px,45vw);
+    }
+}
 
-<main id="inicio">
+@keyframes introCircle {
 
+    0%,
+    100% {
+        transform: scale(1) rotate(0);
+    }
 
-<!-- =====================================================
-     HERO
-===================================================== -->
+    50% {
+        transform: scale(1.08) rotate(10deg);
+    }
+}
 
-<section class="hero">
 
-    <div class="hero-pattern"></div>
+/* =====================================================
+   HEADER
+===================================================== */
 
-    <div class="hero-content">
+.header {
+    position: fixed;
+    z-index: 1000;
 
-        <div class="hero-logo-wrap">
+    top: 0;
+    left: 0;
 
-            <img
-                src="logo.png"
-                alt="Darluz Energia e Segurança"
-                class="hero-logo"
-            >
+    width: 100%;
+    height: 72px;
 
-        </div>
+    padding: 0 16px;
 
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-        <div class="hero-tag">
-            ⚡ ENERGIA
-            &nbsp; / &nbsp;
-            🛡️ SEGURANÇA
-        </div>
+    background:
+        rgba(3,24,45,0.88);
 
+    backdrop-filter: blur(18px);
+    -webkit-backdrop-filter: blur(18px);
 
-        <h1>
-            Energia que
-            <span>move.</span>
-            <br>
-            Segurança que
-            <span>protege.</span>
-        </h1>
+    border-bottom:
+        1px solid rgba(255,255,255,0.08);
 
+    transition:
+        background 0.3s ease,
+        box-shadow 0.3s ease;
+}
 
-        <p>
-            Soluções profissionais pensadas
-            para proteger pessoas, espaços
-            e negócios.
-        </p>
+.header.scrolled {
+    background:
+        rgba(2,13,25,0.96);
 
+    box-shadow:
+        0 8px 30px rgba(0,0,0,0.22);
+}
 
-        <div class="hero-actions">
+.menu-button {
+    width: 44px;
+    height: 44px;
 
-            <a
-                href="#servicos"
-                class="primary-button"
-            >
-                Explorar soluções
-                <span>↗</span>
-            </a>
+    flex-shrink: 0;
 
+    display: flex;
+    flex-direction: column;
 
-            <a
-                href="#sobre"
-                class="secondary-button"
-            >
-                Conhecer a Darluz
-            </a>
+    align-items: center;
+    justify-content: center;
 
-        </div>
+    gap: 5px;
 
-    </div>
+    padding: 10px;
 
+    background:
+        rgba(255,255,255,0.08);
 
-    <div class="hero-card">
+    border-radius: 12px;
 
-        <img
-            src="logo.png"
-            alt="Darluz"
-            class="hero-card-logo"
-        >
+    transition: 0.25s;
+}
 
-        <div>
+.menu-button:hover {
+    background:
+        rgba(255,255,255,0.15);
 
-            <strong>DARLUZ</strong>
+    transform: scale(1.04);
+}
 
-            <span>
-                Energia & Segurança
-            </span>
+.menu-button span {
+    width: 22px;
+    height: 2px;
 
-        </div>
+    display: block;
 
-    </div>
+    background: white;
 
+    border-radius: 10px;
+}
 
-    <div class="scroll-indicator">
 
-        <span>SCROLL</span>
+/* =====================================================
+   LOGOS
+===================================================== */
 
-        <b>↓</b>
+.brand {
+    min-width: 0;
 
-    </div>
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
 
-</section>
+.brand-logo {
+    width: 115px;
+    height: auto;
+    max-height: 52px;
 
+    object-fit: contain;
+}
 
-<!-- =====================================================
-     DESTAQUES
-===================================================== -->
+.menu-logo {
+    width: 130px;
+    height: auto;
+    max-height: 55px;
 
-<section class="highlight-section">
+    object-fit: contain;
+}
 
-    <div class="section-intro">
+.header-contact {
+    flex-shrink: 0;
 
-        <span>DARLUZ</span>
+    padding: 10px 12px;
 
-        <h2>
-            Soluções para
-            <strong>o que importa.</strong>
-        </h2>
+    background: var(--yellow);
+    color: var(--blue-dark);
 
-    </div>
+    border-radius: 9px;
 
+    font-size: 8px;
+    font-weight: 900;
 
-    <div class="highlight-grid">
+    white-space: nowrap;
 
+    transition: 0.25s;
+}
 
-        <article class="feature-card feature-blue">
+.header-contact:hover {
+    transform: translateY(-2px);
 
-            <div class="feature-number">
-                01
-            </div>
+    box-shadow:
+        0 8px 20px
+        rgba(255,196,0,0.2);
+}
 
-            <img
-                src="images/energia.png"
-                alt="Energia"
-                class="feature-image"
-            >
 
-            <div class="feature-content">
+/* =====================================================
+   SIDE MENU
+===================================================== */
 
-                <h3>Energia</h3>
+.menu-overlay {
+    position: fixed;
+    inset: 0;
 
-                <p>
-                    Soluções profissionais
-                    para necessidades
-                    energéticas.
-                </p>
+    background:
+        rgba(0,0,0,0.68);
 
-                <a href="#servicos">
-                    Explorar →
-                </a>
+    opacity: 0;
+    visibility: hidden;
 
-            </div>
+    transition: 0.3s;
 
-        </article>
+    z-index: 1100;
+}
 
+.menu-overlay.active {
+    opacity: 1;
+    visibility: visible;
+}
 
-        <article class="feature-card feature-yellow">
+.side-menu {
+    position: fixed;
+    z-index: 1200;
 
-            <div class="feature-number">
-                02
-            </div>
+    top: 0;
+    left: 0;
 
-            <img
-                src="images/seguranca.png"
-                alt="Segurança"
-                class="feature-image"
-            >
+    width: min(88vw,420px);
+    max-width: 420px;
 
-            <div class="feature-content">
+    height: 100vh;
 
-                <h3>Segurança</h3>
+    padding: 24px;
 
-                <p>
-                    Proteção e soluções
-                    de segurança para
-                    diferentes espaços.
-                </p>
+    display: flex;
+    flex-direction: column;
 
-                <a href="#servicos">
-                    Explorar →
-                </a>
+    background:
+        linear-gradient(
+            180deg,
+            #061f3b,
+            #031427
+        );
 
-            </div>
+    transform:
+        translateX(-105%);
 
-        </article>
+    transition:
+        transform 0.4s
+        cubic-bezier(.77,0,.18,1);
 
+    overflow-y: auto;
 
-        <article class="feature-card feature-dark">
+    box-shadow:
+        15px 0 50px
+        rgba(0,0,0,0.3);
+}
 
-            <div class="feature-number">
-                03
-            </div>
+.side-menu.active {
+    transform: translateX(0);
+}
 
-            <img
-                src="images/manutencao.png"
-                alt="Manutenção"
-                class="feature-image"
-            >
+.menu-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
 
-            <div class="feature-content">
+    padding-bottom: 35px;
+}
 
-                <h3>Manutenção</h3>
+.menu-brand {
+    align-items: flex-start;
+}
 
-                <p>
-                    Acompanhamento
-                    e manutenção
-                    profissional.
-                </p>
+.close-menu {
+    width: 42px;
+    height: 42px;
 
-                <a href="#servicos">
-                    Explorar →
-                </a>
+    flex-shrink: 0;
 
-            </div>
+    border-radius: 50%;
 
-        </article>
+    background:
+        rgba(255,255,255,0.08);
 
-    </div>
+    color: white;
 
-</section>
+    font-size: 27px;
+}
 
+.close-menu:hover {
+    background: var(--yellow);
+    color: var(--blue-dark);
+}
 
-<!-- =====================================================
-     SOBRE NÓS
-===================================================== -->
+.main-menu {
+    width: 100%;
 
-<section
-    id="sobre"
-    class="about-section"
->
+    display: flex;
+    flex-direction: column;
+}
 
-    <div class="about-visual">
+.main-menu a {
+    width: 100%;
 
-        <img
-            src="images/logo.png"
-            alt="Darluz"
-            class="about-image"
-        >
+    display: grid;
 
-        <div class="about-circle">
-            <span>D</span>
-        </div>
+    grid-template-columns:
+        32px
+        minmax(0,1fr)
+        22px;
 
-        <div class="about-label">
-            DARLUZ
-        </div>
+    align-items: center;
 
-    </div>
+    padding: 16px 0;
 
+    border-bottom:
+        1px solid
+        rgba(255,255,255,0.08);
 
-    <div class="about-text">
+    font-size: 18px;
+    font-weight: 800;
 
-        <span class="eyebrow">
-            02 / SOBRE NÓS
-        </span>
+    transition: 0.2s;
+}
 
+.main-menu a:hover {
+    color: var(--yellow);
+    padding-left: 5px;
+}
 
-        <h2>
-            Uma história
-            construída com
-            <strong>confiança.</strong>
-        </h2>
+.main-menu a span {
+    color: var(--yellow);
+    font-size: 9px;
+}
 
+.main-menu a b {
+    color: var(--yellow);
+    text-align: right;
+}
 
-        <p>
-            A Darluz nasceu com o objetivo de
-            disponibilizar soluções profissionais
-            nas áreas da energia e segurança,
-            procurando responder às necessidades
-            de cada cliente com proximidade,
-            rigor e dedicação.
-        </p>
+.menu-bottom {
+    margin-top: auto;
+}
 
+.menu-bottom p {
+    color: var(--muted);
 
-        <p>
-            Ao longo do seu percurso, a empresa
-            foi desenvolvendo a sua experiência
-            e alargando as suas áreas de atuação,
-            mantendo como princípios fundamentais
-            a qualidade do trabalho, a segurança
-            e a confiança nas relações com os
-            seus clientes.
-        </p>
+    font-size: 10px;
+    line-height: 1.7;
 
+    letter-spacing: 1.5px;
+}
 
-        <a
-            href="#contactos"
-            class="text-link"
-        >
-            Falar com a Darluz
-            <span>→</span>
-        </a>
+.menu-button-contact {
+    width: 100%;
 
-    </div>
+    display: block;
 
-</section>
+    margin-top: 18px;
+    padding: 15px;
 
+    text-align: center;
 
-<!-- =====================================================
-     SERVIÇOS
-===================================================== -->
+    background: var(--yellow);
+    color: var(--blue-dark);
 
-<section
-    id="servicos"
-    class="services-section"
->
+    border-radius: 10px;
 
-    <div class="section-header">
+    font-size: 11px;
+    font-weight: 900;
+}
 
-        <div>
 
-            <span class="eyebrow">
-                03 / SERVIÇOS
-            </span>
+/* =====================================================
+   HERO
+===================================================== */
 
-            <h2>
-                O que podemos
-                <strong>fazer por si.</strong>
-            </h2>
+.hero {
+    position: relative;
 
-        </div>
+    width: 100%;
+    min-height: 100svh;
 
+    padding: 135px 18px 65px;
 
-        <p>
-            Descubra as áreas onde
-            podemos ajudar.
-        </p>
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 
-    </div>
+    overflow: hidden;
 
+    background:
+        radial-gradient(
+            circle at 90% 15%,
+            rgba(255,196,0,0.23),
+            transparent 28%
+        ),
+        radial-gradient(
+            circle at 10% 85%,
+            rgba(0,116,220,0.35),
+            transparent 35%
+        ),
+        linear-gradient(
+            145deg,
+            #02101f,
+            #06376a 65%,
+            #075fa9
+        );
+}
 
-    <div class="services-list">
+.hero-pattern {
+    position: absolute;
 
+    width: 500px;
+    height: 500px;
 
-        <article class="service-row">
+    right: -330px;
+    top: 90px;
 
-            <img
-                src="images/energia.png"
-                alt="Energia"
-                class="service-image"
-            >
+    border:
+        90px solid
+        rgba(255,196,0,0.07);
 
-            <div class="service-info">
+    border-radius: 50%;
 
-                <span>01</span>
+    pointer-events: none;
 
-                <h3>Energia</h3>
+    animation:
+        heroPatternFloat 8s
+        ease-in-out
+        infinite;
+}
 
-            </div>
+@keyframes heroPatternFloat {
 
-            <p>
-                Soluções relacionadas
-                com energia e instalações.
-            </p>
+    0%,
+    100% {
+        transform:
+            translateY(0)
+            rotate(0);
+    }
 
-            <a
-                href="#contactos"
-                class="service-arrow"
-                aria-label="Contactar sobre Energia"
-            >
-                ↗
-            </a>
+    50% {
+        transform:
+            translateY(20px)
+            rotate(8deg);
+    }
+}
 
-        </article>
+.hero-content {
+    position: relative;
+    z-index: 2;
 
+    width: 100%;
+    max-width: 700px;
+}
 
-        <article class="service-row">
+.hero-logo-wrap {
+    margin-bottom: 24px;
+}
 
-            <img
-                src="images/seguranca.png"
-                alt="Segurança"
-                class="service-image"
-            >
+.hero-logo {
+    width: 190px;
+    height: auto;
+    max-height: 110px;
 
-            <div class="service-info">
+    object-fit: contain;
 
-                <span>02</span>
+    filter:
+        drop-shadow(
+            0 12px 30px rgba(0,0,0,0.25)
+        );
+}
 
-                <h3>Segurança</h3>
+.hero-tag {
+    display: inline-block;
 
-            </div>
+    margin-bottom: 23px;
 
-            <p>
-                Soluções de segurança
-                para maior proteção.
-            </p>
+    padding: 9px 13px;
 
-            <a
-                href="#contactos"
-                class="service-arrow"
-                aria-label="Contactar sobre Segurança"
-            >
-                ↗
-            </a>
+    border:
+        1px solid
+        rgba(255,255,255,0.15);
 
-        </article>
+    border-radius: 50px;
 
+    background:
+        rgba(255,255,255,0.06);
 
-        <article class="service-row">
+    color: var(--yellow);
 
-            <img
-                src="images/manutencao.png"
-                alt="Manutenção"
-                class="service-image"
-            >
+    font-size: 8px;
+    font-weight: 900;
 
-            <div class="service-info">
+    letter-spacing: 1.5px;
+}
 
-                <span>03</span>
+.hero h1 {
+    width: 100%;
 
-                <h3>Manutenção</h3>
+    font-size:
+        clamp(42px,11vw,82px);
 
-            </div>
+    line-height: 0.98;
 
-            <p>
-                Manutenção e acompanhamento
-                profissional.
-            </p>
+    letter-spacing: -2px;
+}
 
-            <a
-                href="#contactos"
-                class="service-arrow"
-                aria-label="Contactar sobre Manutenção"
-            >
-                ↗
-            </a>
+.hero h1 span {
+    color: var(--yellow);
+}
 
-        </article>
+.hero p {
+    max-width: 520px;
 
+    margin-top: 23px;
 
-        <article class="service-row">
+    color: #bfd4e8;
 
-            <img
-                src="images/consultoria.png"
-                alt="Consultoria"
-                class="service-image"
-            >
+    font-size: 15px;
 
-            <div class="service-info">
+    line-height: 1.55;
+}
 
-                <span>04</span>
+.hero-actions {
+    width: 100%;
 
-                <h3>Consultoria</h3>
+    display: flex;
+    flex-direction: column;
 
-            </div>
+    gap: 10px;
 
-            <p>
-                Orientação para encontrar
-                a solução adequada.
-            </p>
+    margin-top: 30px;
+}
 
-            <a
-                href="#contactos"
-                class="service-arrow"
-                aria-label="Contactar sobre Consultoria"
-            >
-                ↗
-            </a>
+.primary-button,
+.secondary-button {
+    width: 100%;
+    min-height: 52px;
 
-        </article>
+    display: inline-flex;
 
-    </div>
+    align-items: center;
+    justify-content: center;
 
-</section>
+    padding: 0 20px;
 
+    border-radius: 10px;
 
-<!-- =====================================================
-     PROJETOS
-===================================================== -->
+    font-size: 11px;
+    font-weight: 900;
 
-<section
-    id="projetos"
-    class="projects-section"
->
+    transition: 0.25s;
+}
 
-    <div class="section-header light-header">
+.primary-button {
+    background: var(--yellow);
+    color: var(--blue-dark);
 
-        <div>
+    box-shadow:
+        0 12px 30px
+        rgba(255,196,0,0.18);
+}
 
-            <span class="eyebrow">
-                04 / PROJETOS
-            </span>
+.secondary-button {
+    border:
+        1px solid
+        rgba(255,255,255,0.2);
 
-            <h2>
-                Trabalho que
-                <strong>fala por si.</strong>
-            </h2>
+    background:
+        rgba(255,255,255,0.05);
+}
 
-        </div>
+.primary-button span {
+    margin-left: 14px;
+    font-size: 17px;
+}
 
-        <p>
-            Soluções desenvolvidas
-            para diferentes necessidades.
-        </p>
+.hero-card {
+    position: relative;
+    z-index: 3;
 
-    </div>
+    width: 100%;
 
+    margin-top: 48px;
+    padding: 16px;
 
-    <div class="project-grid">
+    display: flex;
+    align-items: center;
 
+    gap: 13px;
 
-        <article class="project-card project-large">
+    background:
+        rgba(255,255,255,0.08);
 
-            <div class="project-visual">
+    border:
+        1px solid
+        rgba(255,255,255,0.12);
 
-                <img
-                    src="images/energia.png"
-                    alt="Projeto de energia"
-                    class="project-image"
-                >
+    backdrop-filter: blur(15px);
 
-            </div>
+    border-radius: 16px;
+}
 
+.hero-card-logo {
+    width: 48px;
+    height: 48px;
 
-            <div class="project-info">
+    flex-shrink: 0;
 
-                <div>
+    padding: 5px;
 
-                    <span>ENERGIA</span>
+    object-fit: contain;
 
-                    <h3>
-                        Projetos de energia
-                    </h3>
+    background: white;
 
-                </div>
+    border-radius: 12px;
+}
 
-                <a href="#contactos">
-                    ↗
-                </a>
+.hero-card strong,
+.hero-card span {
+    display: block;
+}
 
-            </div>
+.hero-card strong {
+    font-size: 13px;
+}
 
-        </article>
+.hero-card span {
+    margin-top: 3px;
 
+    color: var(--muted);
 
-        <article class="project-card">
+    font-size: 10px;
+}
 
-            <div class="project-visual">
+.scroll-indicator {
+    position: absolute;
 
-                <img
-                    src="images/seguranca.png"
-                    alt="Projeto de segurança"
-                    class="project-image"
-                >
+    bottom: 25px;
+    left: 50%;
 
-            </div>
+    transform:
+        translateX(-50%);
 
+    display: flex;
+    flex-direction: column;
 
-            <div class="project-info">
+    align-items: center;
 
-                <div>
+    gap: 5px;
 
-                    <span>SEGURANÇA</span>
+    color:
+        rgba(255,255,255,0.45);
 
-                    <h3>
-                        Soluções de segurança
-                    </h3>
+    font-size: 7px;
 
-                </div>
+    font-weight: 900;
 
-                <a href="#contactos">
-                    ↗
-                </a>
+    letter-spacing: 2px;
+}
 
-            </div>
+.scroll-indicator b {
+    color: var(--yellow);
+    font-size: 16px;
 
-        </article>
+    animation:
+        scrollArrow
+        1.5s
+        infinite;
+}
 
+@keyframes scrollArrow {
 
-        <article class="project-card">
+    0%,
+    100% {
+        transform: translateY(0);
+    }
 
-            <div class="project-visual">
+    50% {
+        transform: translateY(5px);
+    }
+}
 
-                <img
-                    src="images/manutencao.png"
-                    alt="Projeto de manutenção"
-                    class="project-image"
-                >
 
-            </div>
+/* =====================================================
+   GENERAL SECTIONS
+===================================================== */
 
+.highlight-section,
+.services-section,
+.projects-section,
+.values-section,
+.reviews-section,
+.faq-section,
+.recent-work-section {
+    padding: 85px 18px;
+}
 
-            <div class="project-info">
+.section-intro,
+.section-header,
+.values-title {
+    margin-bottom: 35px;
+}
 
-                <div>
+.section-intro > span,
+.eyebrow {
+    color: var(--yellow);
 
-                    <span>MANUTENÇÃO</span>
+    font-size: 8px;
+    font-weight: 900;
 
-                    <h3>
-                        Manutenção profissional
-                    </h3>
+    letter-spacing: 3px;
+}
 
-                </div>
+.section-intro h2,
+.section-header h2,
+.values-title h2,
+.section-heading-light h2 {
+    margin-top: 10px;
 
-                <a href="#contactos">
-                    ↗
-                </a>
+    font-size:
+        clamp(34px,9vw,60px);
 
-            </div>
+    line-height: 1.02;
 
-        </article>
+    letter-spacing: -1px;
+}
 
-    </div>
+.section-intro h2 strong,
+.values-title h2 strong {
+    color: var(--blue);
+}
 
-</section>
 
+/* =====================================================
+   HIGHLIGHTS
+===================================================== */
 
-<!-- =====================================================
-     TRABALHOS RECENTES
-===================================================== -->
+.highlight-section {
+    background: var(--blue-deep);
+}
 
-<section
-    id="trabalhos"
-    class="recent-work-section"
->
+.highlight-grid {
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 14px;
+}
 
-    <div class="section-header light-header">
+.feature-card {
+    position: relative;
 
-        <div>
+    min-height: 320px;
 
-            <span class="eyebrow">
-                05 / TRABALHOS
-            </span>
+    padding: 25px;
 
-            <h2>
-                Alguns dos nossos
-                <strong>trabalhos.</strong>
-            </h2>
+    border-radius: 22px;
 
-        </div>
+    overflow: hidden;
 
-        <p>
-            Conheça alguns dos trabalhos
-            realizados pela Darluz.
-        </p>
+    isolation: isolate;
 
-    </div>
+    opacity: 0;
+    transform: translateY(25px);
 
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
 
-    <div class="recent-work-grid">
+.feature-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
+.feature-card::after {
+    content: "";
 
-        <article class="work-card work-card-large">
+    position: absolute;
+    inset: 0;
 
-            <div class="work-image-wrap">
+    z-index: -1;
 
-                <img
-                    src="images/trabalho1.png"
-                    alt="Trabalho realizado pela Darluz"
-                    class="work-image"
-                    loading="lazy"
-                >
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.82),
+            rgba(0,0,0,0.15) 65%,
+            rgba(0,0,0,0.05)
+        );
+}
 
-                <span class="work-number">
-                    01
-                </span>
+.feature-image {
+    position: absolute;
+    inset: 0;
 
-            </div>
+    width: 100%;
+    height: 100%;
 
-        </article>
+    object-fit: cover;
 
+    opacity: 0.68;
 
-        <article class="work-card">
+    z-index: -2;
 
-            <div class="work-image-wrap">
+    transition:
+        transform 0.5s ease,
+        opacity 0.3s ease;
+}
 
-                <img
-                    src="images/trabalho2.png"
-                    alt="Trabalho realizado pela Darluz"
-                    class="work-image"
-                    loading="lazy"
-                >
+.feature-card:hover .feature-image {
+    transform: scale(1.06);
+    opacity: 0.82;
+}
 
-                <span class="work-number">
-                    02
-                </span>
+.feature-number {
+    position: absolute;
 
-            </div>
+    top: 22px;
+    right: 24px;
 
-        </article>
+    font-size: 10px;
+    font-weight: 900;
 
+    opacity: 0.7;
+}
 
-        <article class="work-card">
+.feature-content {
+    position: absolute;
 
-            <div class="work-image-wrap">
+    left: 25px;
+    right: 25px;
+    bottom: 25px;
 
-                <img
-                    src="images/trabalho3.png"
-                    alt="Trabalho realizado pela Darluz"
-                    class="work-image"
-                    loading="lazy"
-                >
+    z-index: 3;
+}
 
-                <span class="work-number">
-                    03
-                </span>
+.feature-content h3 {
+    font-size:
+        clamp(27px,7vw,42px);
 
-            </div>
+    line-height: 1;
 
-        </article>
+    margin-bottom: 8px;
+}
 
+.feature-content p {
+    max-width: 290px;
 
-        <article class="work-card work-card-wide">
+    margin-bottom: 18px;
 
-            <div class="work-image-wrap">
+    font-size: 13px;
 
-                <img
-                    src="images/trabalho4.png"
-                    alt="Trabalho realizado pela Darluz"
-                    class="work-image"
-                    loading="lazy"
-                >
+    line-height: 1.45;
 
-                <span class="work-number">
-                    04
-                </span>
+    opacity: 0.78;
+}
 
-            </div>
+.feature-content a {
+    font-size: 11px;
+    font-weight: 900;
+}
 
-        </article>
+.feature-blue {
+    background: #0878d5;
+}
 
-    </div>
+.feature-yellow {
+    background: #e5a800;
+}
 
-</section>
+.feature-dark {
+    background: #102e4d;
+}
 
 
-<!-- =====================================================
-     VALORES
-===================================================== -->
+/* =====================================================
+   ABOUT
+===================================================== */
 
-<section class="values-section">
+.about-section {
+    padding: 85px 18px;
 
-    <div class="values-title">
+    display: grid;
 
-        <span class="eyebrow">
-            PORQUÊ DARLUZ?
-        </span>
+    grid-template-columns: 1fr;
 
-        <h2>
-            Feito com
-            <strong>confiança.</strong>
-        </h2>
+    gap: 40px;
 
-    </div>
+    background:
+        linear-gradient(
+            180deg,
+            #071c32,
+            #03101f
+        );
+}
 
+.about-visual {
+    position: relative;
 
-    <div class="values-grid">
+    min-height: 330px;
 
+    display: flex;
 
-        <div class="value-card">
+    align-items: center;
+    justify-content: center;
 
-            <span>01</span>
+    border-radius: 25px;
 
-            <h3>Qualidade</h3>
+    overflow: hidden;
 
-            <p>
-                Compromisso com um
-                trabalho cuidado.
-            </p>
+    background:
+        radial-gradient(
+            circle,
+            #0a79d5,
+            #03182d 65%
+        );
+}
 
-        </div>
+.about-image {
+    position: absolute;
+    inset: 0;
 
+    width: 100%;
+    height: 100%;
 
-        <div class="value-card yellow-value">
+    object-fit: contain;
 
-            <span>02</span>
+    padding: 55px;
 
-            <h3>Segurança</h3>
+    opacity: 0.18;
+}
 
-            <p>
-                Proteção como
-                prioridade.
-            </p>
+.about-circle {
+    position: relative;
+    z-index: 2;
 
-        </div>
+    width: 210px;
+    height: 210px;
 
+    display: flex;
 
-        <div class="value-card blue-value">
+    align-items: center;
+    justify-content: center;
 
-            <span>03</span>
+    border-radius: 50%;
 
-            <h3>Confiança</h3>
+    border:
+        35px solid
+        rgba(255,196,0,0.13);
+}
 
-            <p>
-                Relações construídas
-                com transparência.
-            </p>
+.about-circle span {
+    color: var(--yellow);
 
-        </div>
+    font-size: 80px;
+    font-weight: 900;
+}
 
+.about-label {
+    position: absolute;
 
-        <div class="value-card">
+    bottom: 18px;
+    left: 20px;
 
-            <span>04</span>
+    color:
+        rgba(255,255,255,0.5);
 
-            <h3>Profissionalismo</h3>
+    font-size: 9px;
 
-            <p>
-                Dedicação em
-                cada projeto.
-            </p>
+    font-weight: 900;
 
-        </div>
+    letter-spacing: 3px;
+}
 
-    </div>
+.about-text p {
+    margin-top: 20px;
 
-</section>
+    color: var(--muted);
 
+    font-size: 14px;
 
-<!-- =====================================================
-     FAQ
-===================================================== -->
+    line-height: 1.65;
+}
 
-<section
-    id="faq"
-    class="faq-section"
->
+.about-text p + p {
+    margin-top: 12px;
+}
 
-    <div class="section-header light-header">
+.about-text h2 strong {
+    color: var(--yellow);
+}
 
-        <div>
+.text-link {
+    display: inline-block;
 
-            <span class="eyebrow">
-                06 / FAQ
-            </span>
+    margin-top: 25px;
 
-            <h2>
-                Perguntas
-                <strong>frequentes.</strong>
-            </h2>
+    color: var(--yellow);
 
-        </div>
+    font-size: 12px;
 
-        <p>
-            Algumas respostas às dúvidas
-            mais comuns sobre os nossos serviços.
-        </p>
+    font-weight: 900;
+}
 
-    </div>
 
+/* =====================================================
+   SERVICES
+===================================================== */
 
-    <div class="faq-list">
+.services-section {
+    background: #f2b900;
+    color: var(--blue-dark);
+}
 
+.section-header h2 strong {
+    color: #0065bd;
+}
 
-        <details class="faq-item">
+.section-header > p {
+    max-width: 450px;
 
-            <summary>
-                Que serviços disponibiliza a Darluz?
-                <span>+</span>
-            </summary>
+    margin-top: 15px;
 
-            <div class="faq-answer">
+    font-size: 13px;
 
-                <p>
-                    A Darluz trabalha em diferentes áreas,
-                    incluindo energia, segurança, manutenção
-                    e consultoria, procurando adaptar cada
-                    solução às necessidades do cliente.
-                </p>
+    line-height: 1.5;
 
-            </div>
+    opacity: 0.7;
+}
 
-        </details>
+.services-list {
+    display: flex;
+    flex-direction: column;
 
+    gap: 10px;
+}
 
-        <details class="faq-item">
+.service-row {
+    width: 100%;
+    min-height: 105px;
 
-            <summary>
-                A Darluz trabalha com particulares e empresas?
-                <span>+</span>
-            </summary>
+    padding: 16px;
 
-            <div class="faq-answer">
+    display: grid;
 
-                <p>
-                    Sim. As soluções podem ser direcionadas
-                    para diferentes tipos de clientes e espaços,
-                    de acordo com as necessidades de cada projeto.
-                </p>
+    grid-template-columns:
+        50px
+        minmax(0,1fr)
+        22px;
 
-            </div>
+    align-items: center;
 
-        </details>
+    column-gap: 12px;
 
+    border-radius: 17px;
 
-        <details class="faq-item">
+    background:
+        rgba(255,255,255,0.82);
 
-            <summary>
-                Posso pedir informações sobre um projeto?
-                <span>+</span>
-            </summary>
+    overflow: hidden;
 
-            <div class="faq-answer">
+    opacity: 0;
+    transform: translateY(20px);
 
-                <p>
-                    Sim. Pode contactar a Darluz através do
-                    email geral@darluz.com para apresentar
-                    o projeto ou esclarecer qualquer questão.
-                </p>
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease,
+        background 0.25s;
+}
 
-            </div>
+.service-row.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-        </details>
+.service-image {
+    width: 50px;
+    height: 50px;
 
+    flex-shrink: 0;
 
-        <details class="faq-item">
+    object-fit: cover;
 
-            <summary>
-                A Darluz faz manutenção?
-                <span>+</span>
-            </summary>
+    border-radius: 14px;
 
-            <div class="faq-answer">
+    background: var(--blue);
+}
 
-                <p>
-                    Sim. A manutenção e o acompanhamento
-                    profissional fazem parte das áreas de
-                    atuação apresentadas pela Darluz.
-                </p>
+.service-info span {
+    display: block;
 
-            </div>
+    color: #7890a8;
 
-        </details>
+    font-size: 8px;
+    font-weight: 900;
+}
 
+.service-info h3 {
+    margin-top: 3px;
 
-        <details class="faq-item">
+    font-size:
+        clamp(17px,5vw,28px);
 
-            <summary>
-                Como posso contactar a Darluz?
-                <span>+</span>
-            </summary>
+    line-height: 1.05;
+}
 
-            <div class="faq-answer">
+.service-row > p {
+    display: none;
 
-                <p>
-                    Pode utilizar o botão de contacto do site
-                    ou enviar diretamente um email para
-                    geral@darluz.com.
-                </p>
+    font-size: 13px;
 
-            </div>
+    line-height: 1.5;
 
-        </details>
+    opacity: 0.65;
+}
 
-    </div>
+.service-arrow {
+    font-size: 21px;
+}
 
-</section>
 
+/* =====================================================
+   PROJECTS
+===================================================== */
 
-<!-- =====================================================
-     FEEDBACKS
-===================================================== -->
+.projects-section,
+.recent-work-section,
+.faq-section {
+    background:
+        linear-gradient(
+            145deg,
+            #061a30,
+            #020c18
+        );
+}
 
-<section
-    id="feedbacks"
-    class="reviews-section"
->
+.light-header h2,
+.section-heading-light h2 {
+    color: white;
+}
 
-    <div class="section-heading-light">
+.light-header h2 strong,
+.section-heading-light h2 strong {
+    color: var(--yellow);
+}
 
-        <span>
-            07 / FEEDBACKS
-        </span>
+.light-header > p {
+    color: var(--muted);
+}
 
-        <h2>
-            O que dizem
-            <strong>sobre nós.</strong>
-        </h2>
+.project-grid {
+    display: grid;
 
-    </div>
+    grid-template-columns: 1fr;
 
+    gap: 15px;
+}
 
-    <div class="review-slider">
+.project-card {
+    overflow: hidden;
 
+    border-radius: 21px;
 
-        <article class="review-card-big">
+    background: #0b2947;
 
-            <div class="review-stars">
-                ★★★★★
-            </div>
+    opacity: 0;
+    transform: translateY(25px);
 
-            <blockquote>
-                "Excelente profissionalismo
-                e atendimento."
-            </blockquote>
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
 
-            <div class="review-author">
+.project-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
-                <span>C</span>
+.project-visual {
+    position: relative;
 
-                <div>
+    width: 100%;
+    min-height: 250px;
 
-                    <strong>
-                        Cliente Darluz
-                    </strong>
+    overflow: hidden;
+}
 
-                    <small>
-                        Cliente
-                    </small>
+.project-image {
+    position: absolute;
+    inset: 0;
 
-                </div>
+    width: 100%;
+    height: 100%;
 
-            </div>
+    object-fit: cover;
 
-        </article>
+    transition:
+        transform 0.5s ease;
+}
 
+.project-visual::after {
+    content: "";
 
-        <article class="review-card-big yellow-review">
+    position: absolute;
+    inset: 0;
 
-            <div class="review-stars">
-                ★★★★★
-            </div>
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.55),
+            rgba(0,0,0,0.05)
+        );
+}
 
-            <blockquote>
-                "Serviço de qualidade
-                e muita confiança."
-            </blockquote>
+.project-card:hover .project-image {
+    transform: scale(1.07);
+}
 
-            <div class="review-author">
+.project-info {
+    min-height: 85px;
 
-                <span>C</span>
+    padding: 17px;
 
-                <div>
+    display: flex;
 
-                    <strong>
-                        Cliente Darluz
-                    </strong>
+    align-items: center;
+    justify-content: space-between;
 
-                    <small>
-                        Cliente
-                    </small>
+    gap: 15px;
+}
 
-                </div>
+.project-info span {
+    display: block;
 
-            </div>
+    color: var(--yellow);
 
-        </article>
+    font-size: 8px;
 
-    </div>
+    font-weight: 900;
 
-</section>
+    letter-spacing: 1.5px;
+}
 
+.project-info h3 {
+    margin-top: 4px;
 
-<!-- =====================================================
-     CONTACTOS
-===================================================== -->
+    font-size:
+        clamp(15px,4.5vw,24px);
+}
 
-<section
-    id="contactos"
-    class="contact-section"
->
+.project-info > a {
+    width: 35px;
+    height: 35px;
 
-    <div class="contact-card">
+    flex-shrink: 0;
 
-        <div class="contact-content">
+    display: flex;
 
-            <span>
-                08 / CONTACTOS
-            </span>
+    align-items: center;
+    justify-content: center;
 
-            <h2>
-                Vamos criar
-                algo <strong>seguro.</strong>
-            </h2>
+    border-radius: 50%;
 
-            <p>
-                Tem um projeto ou precisa
-                de mais informações?
-                Entre em contacto com a Darluz.
-            </p>
+    background:
+        rgba(255,255,255,0.08);
 
-        </div>
+    color: var(--yellow);
+}
 
 
-        <a
-            href="mailto:geral@darluz.com"
-            class="contact-button"
-        >
-            CONTACTAR DARLUZ
-            <span>↗</span>
-        </a>
+/* =====================================================
+   RECENT WORK
+===================================================== */
 
-    </div>
+.recent-work-grid {
+    display: grid;
 
-</section>
+    grid-template-columns: 1fr;
 
-</main>
+    gap: 15px;
+}
 
+.work-card {
+    position: relative;
 
-<!-- =====================================================
-     FOOTER
-===================================================== -->
+    overflow: hidden;
 
-<footer class="footer">
+    min-height: 250px;
 
-    <div class="footer-top">
+    border-radius: 21px;
 
-        <div class="footer-brand">
+    background: #0a2947;
 
-            <img
-                src="logo.png"
-                alt="Darluz"
-                class="footer-logo"
-            >
+    opacity: 0;
+    transform: translateY(25px);
 
-            <span>
-                ENERGIA & SEGURANÇA
-            </span>
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
 
-        </div>
+.work-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
 
+.work-image-wrap {
+    position: relative;
 
-        <div class="footer-slogan">
+    width: 100%;
+    height: 100%;
+    min-height: 250px;
 
-            ENERGIA.
-            <br>
-            SEGURANÇA.
-            <br>
-            CONFIANÇA.
+    overflow: hidden;
+}
 
-        </div>
+.work-image {
+    width: 100%;
+    height: 100%;
 
-    </div>
+    min-height: 250px;
 
+    object-fit: cover;
 
-    <div class="footer-links">
+    transition:
+        transform 0.6s ease;
+}
 
-        <a href="#inicio">Início</a>
+.work-card::after {
+    content: "";
 
-        <a href="#sobre">Sobre Nós</a>
+    position: absolute;
 
-        <a href="#servicos">Serviços</a>
+    inset: 0;
 
-        <a href="#projetos">Projetos</a>
+    pointer-events: none;
 
-        <a href="#trabalhos">Trabalhos</a>
+    background:
+        linear-gradient(
+            to top,
+            rgba(0,0,0,0.45),
+            transparent 55%
+        );
+}
 
-        <a href="#faq">FAQ</a>
+.work-card:hover .work-image {
+    transform: scale(1.05);
+}
 
-        <a href="#feedbacks">Feedbacks</a>
+.work-number {
+    position: absolute;
 
-        <a href="#contactos">Contactos</a>
+    z-index: 2;
 
-    </div>
+    top: 15px;
+    right: 15px;
 
+    width: 38px;
+    height: 38px;
 
-    <div class="footer-contact-info">
+    display: flex;
 
-        <a href="mailto:geral@darluz.com">
-            geral@darluz.com
-        </a>
+    align-items: center;
+    justify-content: center;
 
-        <a href="tel:+351968583032">
-            +351 968 583 032
-        </a>
+    border-radius: 50%;
 
-    </div>
+    background:
+        rgba(0,0,0,0.45);
 
+    backdrop-filter: blur(8px);
 
-    <div class="footer-bottom">
+    color: var(--yellow);
 
-        <span>
-            © 2026 Darluz Energia e Segurança
-        </span>
+    font-size: 10px;
 
-        <span>
-            Todos os direitos reservados.
-        </span>
+    font-weight: 900;
+}
 
-    </div>
 
-</footer>
+/* =====================================================
+   VALUES
+===================================================== */
 
+.values-section {
+    background: var(--yellow);
+    color: var(--blue-dark);
+}
 
-<script src="script.js"></script>
+.values-title h2 strong {
+    color: #0067c2;
+}
 
-</body>
-        </html>
+.values-grid {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 10px;
+}
+
+.value-card {
+    min-height: 180px;
+
+    padding: 20px;
+
+    border-radius: 18px;
+
+    background:
+        rgba(255,255,255,0.65);
+
+    opacity: 0;
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.value-card.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.value-card span {
+    font-size: 9px;
+    font-weight: 900;
+    opacity: 0.5;
+}
+
+.value-card h3 {
+    margin-top: 35px;
+
+    font-size:
+        clamp(17px,5vw,26px);
+}
+
+.value-card p {
+    margin-top: 7px;
+
+    font-size: 11px;
+
+    line-height: 1.4;
+
+    opacity: 0.65;
+}
+
+.yellow-value {
+    background: var(--blue-dark);
+    color: white;
+}
+
+.blue-value {
+    background: var(--blue);
+    color: white;
+}
+
+
+/* =====================================================
+   FAQ
+===================================================== */
+
+.faq-section {
+    background:
+        linear-gradient(
+            145deg,
+            #03101f,
+            #092a49
+        );
+}
+
+.faq-list {
+    display: flex;
+    flex-direction: column;
+
+    gap: 10px;
+}
+
+.faq-item {
+    width: 100%;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    border-radius: 16px;
+
+    background:
+        rgba(255,255,255,0.045);
+
+    overflow: hidden;
+}
+
+.faq-item summary {
+    min-height: 65px;
+
+    padding: 18px;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: space-between;
+
+    gap: 15px;
+
+    cursor: pointer;
+
+    color: white;
+
+    font-size: 13px;
+
+    font-weight: 800;
+
+    list-style: none;
+}
+
+.faq-item summary::-webkit-details-marker {
+    display: none;
+}
+
+.faq-item summary span {
+    flex-shrink: 0;
+
+    color: var(--yellow);
+
+    font-size: 24px;
+
+    transition:
+        transform 0.25s ease;
+}
+
+.faq-item[open] summary span {
+    transform: rotate(45deg);
+}
+
+.faq-answer {
+    padding:
+        0 18px 20px;
+}
+
+.faq-answer p {
+    color: var(--muted);
+
+    font-size: 13px;
+
+    line-height: 1.6;
+}
+
+
+/* =====================================================
+   REVIEWS
+===================================================== */
+
+.reviews-section {
+    background:
+        linear-gradient(
+            145deg,
+            #03101f,
+            #092a49
+        );
+}
+
+.section-heading-light > span {
+    color: var(--yellow);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.review-slider {
+    display: grid;
+
+    grid-template-columns: 1fr;
+
+    gap: 15px;
+
+    margin-top: 35px;
+}
+
+.review-card-big {
+    min-height: 270px;
+
+    padding: 27px;
+
+    display: flex;
+    flex-direction: column;
+
+    justify-content: space-between;
+
+    border-radius: 21px;
+
+    background: #0c3154;
+
+    border:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    opacity: 0;
+    transform: translateY(20px);
+
+    transition:
+        opacity 0.6s ease,
+        transform 0.6s ease;
+}
+
+.review-card-big.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.yellow-review {
+    background: var(--yellow);
+    color: var(--blue-dark);
+}
+
+.review-stars {
+    color: var(--yellow);
+    letter-spacing: 3px;
+}
+
+.yellow-review .review-stars {
+    color: var(--blue);
+}
+
+.review-card-big blockquote {
+    font-size:
+        clamp(21px,6vw,34px);
+
+    line-height: 1.12;
+
+    font-weight: 800;
+}
+
+.review-author {
+    display: flex;
+    align-items: center;
+
+    gap: 12px;
+}
+
+.review-author > span {
+    width: 38px;
+    height: 38px;
+
+    flex-shrink: 0;
+
+    display: flex;
+
+    align-items: center;
+    justify-content: center;
+
+    border-radius: 50%;
+
+    background:
+        rgba(255,255,255,0.12);
+
+    font-weight: 900;
+}
+
+.review-author strong,
+.review-author small {
+    display: block;
+}
+
+.review-author strong {
+    font-size: 11px;
+}
+
+.review-author small {
+    color: var(--muted);
+    font-size: 9px;
+}
+
+
+/* =====================================================
+   CONTACT
+===================================================== */
+
+.contact-section {
+    padding: 30px 18px 70px;
+
+    background: #03101f;
+}
+
+.contact-card {
+    position: relative;
+
+    width: 100%;
+
+    padding: 35px 25px;
+
+    border-radius: 24px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0879d5,
+            #043a70
+        );
+}
+
+.contact-card::before,
+.contact-card::after {
+    content: "";
+
+    position: absolute;
+
+    border-radius: 50%;
+}
+
+.contact-card::before {
+    width: 180px;
+    height: 180px;
+
+    left: -100px;
+    bottom: -100px;
+
+    background:
+        rgba(255,255,255,0.05);
+}
+
+.contact-card::after {
+    width: 250px;
+    height: 250px;
+
+    right: -140px;
+    top: -130px;
+
+    border:
+        45px solid
+        rgba(255,196,0,0.13);
+}
+
+.contact-content {
+    position: relative;
+    z-index: 2;
+}
+
+.contact-content > span {
+    color: var(--yellow);
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    letter-spacing: 2px;
+}
+
+.contact-content h2 {
+    margin-top: 13px;
+
+    font-size:
+        clamp(36px,10vw,70px);
+
+    line-height: 0.98;
+}
+
+.contact-content h2 strong {
+    color: var(--yellow);
+}
+
+.contact-content p {
+    max-width: 400px;
+
+    margin-top: 18px;
+
+    color: #c5dcef;
+
+    font-size: 13px;
+
+    line-height: 1.5;
+}
+
+.contact-button {
+    position: relative;
+    z-index: 3;
+
+    display: inline-flex;
+
+    align-items: center;
+    justify-content: center;
+
+    gap: 15px;
+
+    margin-top: 28px;
+
+    padding: 15px 20px;
+
+    background: var(--yellow);
+
+    color: var(--blue-dark);
+
+    border-radius: 10px;
+
+    font-size: 10px;
+
+    font-weight: 900;
+}
+
+
+/* =====================================================
+   FOOTER
+===================================================== */
+
+.footer {
+    padding: 50px 18px 25px;
+
+    background: #010a14;
+}
+
+.footer-top {
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 25px;
+}
+
+.footer-logo {
+    width: 140px;
+    height: auto;
+    max-height: 60px;
+
+    object-fit: contain;
+}
+
+.footer-brand span {
+    display: block;
+
+    margin-top: 5px;
+
+    color: var(--yellow);
+
+    font-size: 6px;
+
+    letter-spacing: 2px;
+}
+
+.footer-slogan {
+    max-width: 150px;
+
+    color: #66819c;
+
+    font-size: 9px;
+
+    font-weight: 900;
+
+    line-height: 1.6;
+
+    text-align: right;
+}
+
+.footer-links {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 15px 22px;
+
+    margin-top: 35px;
+
+    padding-top: 25px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+}
+
+.footer-links a {
+    color: #91a9c0;
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.footer-contact-info {
+    display: flex;
+
+    flex-wrap: wrap;
+
+    gap: 12px 25px;
+
+    margin-top: 25px;
+}
+
+.footer-contact-info a {
+    color: var(--yellow);
+
+    font-size: 10px;
+
+    font-weight: 700;
+}
+
+.footer-bottom {
+    margin-top: 50px;
+
+    padding-top: 20px;
+
+    display: flex;
+
+    justify-content: space-between;
+
+    gap: 20px;
+
+    border-top:
+        1px solid
+        rgba(255,255,255,0.08);
+
+    color: #506a82;
+
+    font-size: 8px;
+}
+
+
+/* =====================================================
+   MOBILE
+===================================================== */
+
+@media (max-width: 799px) {
+
+    .feature-image {
+        opacity: 0.68;
+    }
+
+    .work-card,
+    .work-card-large,
+    .work-card-wide {
+        min-height: 250px;
+    }
+
+}
+
+
+/* =====================================================
+   DESKTOP
+===================================================== */
+
+@media (min-width: 800px) {
+
+    .header {
+        height: 82px;
+        padding: 0 5%;
+    }
+
+    .menu-button {
+        width: 47px;
+        height: 47px;
+    }
+
+    .brand-logo {
+        width: 135px;
+        max-height: 60px;
+    }
+
+    .menu-logo {
+        width: 150px;
+    }
+
+    .hero {
+        padding:
+            170px 9% 100px;
+    }
+
+    .hero-logo {
+        width: 240px;
+        max-height: 140px;
+    }
+
+    .hero h1 {
+        font-size:
+            clamp(60px,7vw,100px);
+    }
+
+    .hero-actions {
+        width: auto;
+        flex-direction: row;
+    }
+
+    .primary-button,
+    .secondary-button {
+        width: auto;
+        padding: 0 25px;
+    }
+
+    .hero-card {
+        position: absolute;
+
+        right: 9%;
+        bottom: 100px;
+
+        width: 270px;
+
+        margin-top: 0;
+    }
+
+    .highlight-section,
+    .services-section,
+    .projects-section,
+    .values-section,
+    .reviews-section,
+    .faq-section,
+    .recent-work-section {
+        padding-left: 9%;
+        padding-right: 9%;
+    }
+
+    .section-intro h2,
+    .section-header h2,
+    .values-title h2,
+    .section-heading-light h2 {
+        font-size:
+            clamp(50px,5vw,75px);
+    }
+
+    .highlight-grid {
+        grid-template-columns:
+            repeat(3,1fr);
+    }
+
+    .feature-card {
+        min-height: 390px;
+    }
+
+    .about-section {
+        grid-template-columns:
+            1fr 1fr;
+
+        padding:
+            110px 9%;
+
+        align-items: center;
+    }
+
+    .about-visual {
+        min-height: 500px;
+    }
+
+    .services-list {
+        gap: 12px;
+    }
+
+    .service-row {
+        grid-template-columns:
+            65px
+            220px
+            1fr
+            35px;
+
+        min-height: 115px;
+
+        padding: 20px 25px;
+    }
+
+    .service-image {
+        width: 65px;
+        height: 65px;
+
+        border-radius: 16px;
+    }
+
+    .service-row > p {
+        display: block;
+    }
+
+    .project-grid {
+        grid-template-columns:
+            1.4fr 1fr;
+    }
+
+    .project-large {
+        grid-row: span 2;
+    }
+
+    .project-large .project-visual {
+        min-height: 500px;
+    }
+
+    .recent-work-grid {
+        grid-template-columns:
+            1.3fr 1fr;
+    }
+
+    .work-card-large {
+        grid-row: span 2;
+    }
+
+    .work-card-large,
+    .work-card-large .work-image-wrap,
+    .work-card-large .work-image {
+        min-height: 520px;
+    }
+
+    .work-card-wide {
+        grid-column: span 2;
+    }
+
+    .work-card-wide,
+    .work-card-wide .work-image-wrap,
+    .work-card-wide .work-image {
+        min-height: 300px;
+    }
+
+    .values-grid {
+        grid-template-columns:
+            repeat(4,1fr);
+    }
+
+    .review-slider {
+        grid-template-columns:
+            1fr 1fr;
+    }
+
+    .contact-section {
+        padding:
+            60px 9% 100px;
+    }
+
+    .contact-card {
+        padding: 65px;
+    }
+
+    .footer {
+        padding-left: 9%;
+        padding-right: 9%;
+    }
+
+}
+
+
+/* =====================================================
+   LARGE SCREENS
+===================================================== */
+
+@media (min-width: 1200px) {
+
+    .hero-content {
+        max-width: 850px;
+    }
+
+    .hero-logo {
+        width: 260px;
+    }
+
+    .hero-card {
+        width: 310px;
+    }
+
+    .feature-card {
+        min-height: 430px;
+    }
+
+}
+
+
+/* =====================================================
+   SMALL PHONES
+===================================================== */
+
+@media (max-width: 380px) {
+
+    .header {
+        padding: 0 11px;
+    }
+
+    .brand-logo {
+        width: 90px;
+    }
+
+    .header-contact {
+        padding: 9px;
+
+        font-size: 7px;
+    }
+
+    .hero {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .hero-logo {
+        width: 150px;
+    }
+
+    .hero h1 {
+        font-size: 38px;
+    }
+
+    .highlight-section,
+    .services-section,
+    .projects-section,
+    .values-section,
+    .reviews-section,
+    .faq-section,
+    .recent-work-section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .about-section {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+
+    .values-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .footer-top {
+        flex-direction: column;
+    }
+
+    .footer-slogan {
+        text-align: left;
+    }
+
+    .footer-bottom {
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .intro-logo {
+        width: 65vw;
+    }
+
+    .intro-title {
+        font-size: 24px;
+        letter-spacing: 3px;
+    }
+
+    .intro-subtitle {
+        font-size: 8px;
+        letter-spacing: 2px;
+    }
+}
+
+
+/* =====================================================
+   TOUCH DEVICES
+===================================================== */
+
+@media (hover: none) {
+
+    .feature-card:hover .feature-image,
+    .project-card:hover .project-image,
+    .work-card:hover .work-image {
+        transform: none;
+    }
+
+}
