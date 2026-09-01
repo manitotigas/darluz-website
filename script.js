@@ -1,163 +1,66 @@
-```javascript
 document.addEventListener("DOMContentLoaded", () => {
 
     /* =====================================================
-       ELEMENTOS
+       INTRO ANIMATION
     ===================================================== */
 
     const intro = document.getElementById("intro");
-    const header = document.getElementById("header");
 
-    const menuButton = document.getElementById("menuButton");
-    const closeMenu = document.getElementById("closeMenu");
-    const sideMenu = document.getElementById("sideMenu");
-    const menuOverlay = document.getElementById("menuOverlay");
-
-    const revealElements = document.querySelectorAll(".reveal");
-
-
-    /* =====================================================
-       INTRO
-    ===================================================== */
-
-    // Bloqueia o scroll enquanto a intro está visível
-    document.body.classList.add("intro-active");
-
-    // Tempo da animação de entrada
-    setTimeout(() => {
-
-        if (intro) {
-            intro.classList.add("finished");
-        }
-
-        document.body.classList.remove("intro-active");
-
-    }, 3000);
-
-
-    // Permite saltar a intro ao clicar nela
     if (intro) {
 
-        intro.addEventListener("click", () => {
+        // Bloqueia o scroll enquanto a intro está ativa
+        document.body.classList.add("intro-active");
+
+        // Tempo total da animação
+        const INTRO_DURATION = 3200;
+
+        setTimeout(() => {
 
             intro.classList.add("finished");
 
             document.body.classList.remove("intro-active");
 
-        });
+            // Remove completamente a intro depois do fade
+            setTimeout(() => {
+                intro.style.display = "none";
+            }, 900);
 
+        }, INTRO_DURATION);
     }
 
 
     /* =====================================================
-       REVEAL DAS SECÇÕES
+       HEADER SCROLL
     ===================================================== */
 
-    // IMPORTANTE:
-    // Se o IntersectionObserver não funcionar,
-    // mostramos tudo na mesma.
-    // Assim nunca ficam páginas vazias.
-
-    if ("IntersectionObserver" in window) {
-
-        const observer = new IntersectionObserver(
-            (entries, observer) => {
-
-                entries.forEach(entry => {
-
-                    if (entry.isIntersecting) {
-
-                        entry.target.classList.add("visible");
-
-                        observer.unobserve(entry.target);
-
-                    }
-
-                });
-
-            },
-            {
-                threshold: 0.08,
-                rootMargin: "0px 0px -40px 0px"
-            }
-        );
-
-
-        revealElements.forEach(element => {
-
-            observer.observe(element);
-
-        });
-
-
-        // Mostra imediatamente os elementos que já estão
-        // visíveis no ecrã ao carregar a página.
-
-        setTimeout(() => {
-
-            revealElements.forEach(element => {
-
-                const rect = element.getBoundingClientRect();
-
-                if (
-                    rect.top < window.innerHeight &&
-                    rect.bottom > 0
-                ) {
-
-                    element.classList.add("visible");
-
-                }
-
-            });
-
-        }, 100);
-
-
-    } else {
-
-        // Fallback para browsers sem IntersectionObserver
-
-        revealElements.forEach(element => {
-
-            element.classList.add("visible");
-
-        });
-
-    }
-
-
-    /* =====================================================
-       HEADER AO FAZER SCROLL
-    ===================================================== */
+    const header = document.getElementById("header");
 
     function updateHeader() {
 
         if (!header) return;
 
         if (window.scrollY > 30) {
-
             header.classList.add("scrolled");
-
         } else {
-
             header.classList.remove("scrolled");
-
         }
-
     }
 
-    window.addEventListener(
-        "scroll",
-        updateHeader,
-        { passive: true }
-    );
+    window.addEventListener("scroll", updateHeader, {
+        passive: true
+    });
 
     updateHeader();
 
 
     /* =====================================================
-       MENU
+       SIDE MENU
     ===================================================== */
+
+    const menuButton = document.getElementById("menuButton");
+    const closeMenu = document.getElementById("closeMenu");
+    const sideMenu = document.getElementById("sideMenu");
+    const menuOverlay = document.getElementById("menuOverlay");
 
     function openMenu() {
 
@@ -173,7 +76,6 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         document.body.classList.add("menu-open");
-
     }
 
 
@@ -191,89 +93,150 @@ document.addEventListener("DOMContentLoaded", () => {
         );
 
         document.body.classList.remove("menu-open");
-
     }
 
 
     if (menuButton) {
+        menuButton.addEventListener("click", () => {
 
-        menuButton.addEventListener(
-            "click",
-            openMenu
-        );
+            if (sideMenu.classList.contains("active")) {
+                closeSideMenu();
+            } else {
+                openMenu();
+            }
 
+        });
     }
 
 
     if (closeMenu) {
-
         closeMenu.addEventListener(
             "click",
             closeSideMenu
         );
-
     }
 
 
     if (menuOverlay) {
-
         menuOverlay.addEventListener(
             "click",
             closeSideMenu
         );
-
     }
 
 
     /* =====================================================
-       LINKS DO MENU
+       MENU LINKS
     ===================================================== */
 
     const menuLinks = document.querySelectorAll(
         ".main-menu a, .menu-brand, .menu-button-contact"
     );
 
-
     menuLinks.forEach(link => {
 
         link.addEventListener("click", () => {
-
             closeSideMenu();
-
         });
 
     });
 
 
     /* =====================================================
-       ESC PARA FECHAR O MENU
+       ESC CLOSE MENU
     ===================================================== */
 
-    document.addEventListener(
-        "keydown",
-        event => {
+    document.addEventListener("keydown", event => {
 
-            if (event.key === "Escape") {
-
-                closeSideMenu();
-
-            }
-
-        }
-    );
-
-
-    /* =====================================================
-       FECHAR MENU AO REDIMENSIONAR
-    ===================================================== */
-
-    window.addEventListener("resize", () => {
-
-        if (window.innerWidth >= 800) {
+        if (event.key === "Escape") {
 
             closeSideMenu();
 
         }
+
+    });
+
+
+    /* =====================================================
+       REVEAL ANIMATIONS
+    ===================================================== */
+
+    const revealElements = document.querySelectorAll(
+        ".reveal"
+    );
+
+    if ("IntersectionObserver" in window) {
+
+        const revealObserver =
+            new IntersectionObserver(
+                entries => {
+
+                    entries.forEach(entry => {
+
+                        if (entry.isIntersecting) {
+
+                            entry.target.classList.add(
+                                "visible"
+                            );
+
+                            revealObserver.unobserve(
+                                entry.target
+                            );
+
+                        }
+
+                    });
+
+                },
+                {
+                    threshold: 0.12
+                }
+            );
+
+
+        revealElements.forEach(element => {
+
+            revealObserver.observe(element);
+
+        });
+
+    } else {
+
+        // Compatibilidade com browsers antigos
+        revealElements.forEach(element => {
+
+            element.classList.add("visible");
+
+        });
+
+    }
+
+
+    /* =====================================================
+       FAQ
+    ===================================================== */
+
+    const faqItems =
+        document.querySelectorAll(".faq-item");
+
+    faqItems.forEach(item => {
+
+        item.addEventListener("toggle", () => {
+
+            if (!item.open) return;
+
+            faqItems.forEach(otherItem => {
+
+                if (
+                    otherItem !== item &&
+                    otherItem.open
+                ) {
+                    otherItem.removeAttribute("open");
+                }
+
+            });
+
+        });
 
     });
 
@@ -282,10 +245,8 @@ document.addEventListener("DOMContentLoaded", () => {
        SMOOTH SCROLL
     ===================================================== */
 
-    const anchorLinks = document.querySelectorAll(
-        'a[href^="#"]'
-    );
-
+    const anchorLinks =
+        document.querySelectorAll('a[href^="#"]');
 
     anchorLinks.forEach(link => {
 
@@ -301,32 +262,22 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-
             const target =
                 document.querySelector(targetId);
 
-
-            if (!target) {
-                return;
-            }
-
+            if (!target) return;
 
             event.preventDefault();
-
-            closeSideMenu();
-
 
             const headerHeight =
                 header
                     ? header.offsetHeight
                     : 0;
 
-
             const targetPosition =
                 target.getBoundingClientRect().top +
                 window.scrollY -
                 headerHeight;
-
 
             window.scrollTo({
                 top: targetPosition,
@@ -339,96 +290,23 @@ document.addEventListener("DOMContentLoaded", () => {
 
 
     /* =====================================================
-       IMAGENS
+       IMAGE ERROR HANDLING
     ===================================================== */
-
-    // Se alguma imagem falhar, não deixa a página
-    // ficar com espaços estranhos.
 
     const images =
         document.querySelectorAll("img");
 
-
     images.forEach(image => {
 
-        image.addEventListener(
-            "error",
-            () => {
+        image.addEventListener("error", () => {
 
-                console.warn(
-                    "Imagem não encontrada:",
-                    image.src
-                );
-
-                image.style.opacity = "0";
-
-            }
-        );
-
-    });
-
-
-    /* =====================================================
-       FAQ
-    ===================================================== */
-
-    const faqItems =
-        document.querySelectorAll(".faq-item");
-
-
-    faqItems.forEach(item => {
-
-        item.addEventListener("toggle", () => {
-
-            if (!item.open) return;
-
-
-            faqItems.forEach(otherItem => {
-
-                if (
-                    otherItem !== item &&
-                    otherItem.open
-                ) {
-
-                    otherItem.open = false;
-
-                }
-
-            });
+            console.warn(
+                "Imagem não encontrada:",
+                image.src
+            );
 
         });
 
     });
-
-
-    /* =====================================================
-       GARANTIA DE VISIBILIDADE
-    ===================================================== */
-
-    // Depois de 1 segundo, qualquer .reveal que ainda
-    // esteja escondido é mostrado.
-    //
-    // Isto evita o problema de uma secção ficar vazia
-    // por causa de algum erro do observer.
-
-    setTimeout(() => {
-
-        revealElements.forEach(element => {
-
-            element.classList.add("visible");
-
-        });
-
-    }, 1000);
-
-
-    /* =====================================================
-       CONSOLE
-    ===================================================== */
-
-    console.log(
-        "Darluz — site carregado corretamente."
-    );
 
 });
-```
