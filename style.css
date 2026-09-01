@@ -2416,3 +2416,225 @@ p {
         gap: 8px;
     }
       }
+/* =====================================================
+IMAGENS DOS SERVIÇOS E PROJETOS
+===================================================== */
+
+.feature-card {
+isolation: isolate;
+}
+
+.feature-image {
+position: absolute;
+inset: 0;
+
+width: 100%;
+height: 100%;
+
+object-fit: cover;
+
+opacity: 0.72;
+
+z-index: -2;
+
+transition: transform 0.5s ease,
+            opacity 0.3s ease;
+
+}
+
+.feature-card::after {
+content: "";
+
+position: absolute;
+inset: 0;
+
+z-index: -1;
+
+background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.82),
+        rgba(0,0,0,0.12) 65%,
+        rgba(0,0,0,0.05)
+    );
+
+}
+
+.feature-card:hover .feature-image {
+transform: scale(1.06);
+opacity: 0.82;
+}
+
+.feature-content {
+z-index: 3;
+}
+
+.feature-number {
+z-index: 4;
+}
+
+/* =====================================================
+SERVICE IMAGES
+===================================================== */
+
+.service-row {
+overflow: hidden;
+}
+
+.service-image {
+width: 50px;
+height: 50px;
+
+flex-shrink: 0;
+
+object-fit: cover;
+
+border-radius: 14px;
+
+background: var(--blue);
+
+}
+
+.service-row:nth-child(2) .service-image {
+background: var(--yellow);
+}
+
+.service-row:nth-child(3) .service-image {
+background: var(--blue-dark);
+}
+
+.service-row:nth-child(4) .service-image {
+background: #0080dd;
+}
+
+/* =====================================================
+PROJECT IMAGES
+===================================================== */
+
+.project-visual {
+position: relative;
+
+overflow: hidden;
+
+}
+
+.project-image {
+position: absolute;
+
+inset: 0;
+
+width: 100%;
+height: 100%;
+
+object-fit: cover;
+
+transition: transform 0.5s ease;
+
+}
+
+.project-visual::after {
+content: "";
+
+position: absolute;
+
+inset: 0;
+
+background:
+    linear-gradient(
+        to top,
+        rgba(0,0,0,0.55),
+        rgba(0,0,0,0.05)
+    );
+
+pointer-events: none;
+
+}
+
+.project-card:hover .project-image {
+transform: scale(1.07);
+}
+
+/* =====================================================
+ABOUT LOGO
+===================================================== */
+
+.about-image {
+object-fit: contain;
+
+padding: 55px;
+
+opacity: 0.35;
+
+filter: drop-shadow(
+    0 15px 35px rgba(0,0,0,0.35)
+);
+
+}
+
+/* =====================================================
+HERO CARD LOGO
+===================================================== */
+
+.hero-card-logo {
+width: 45px;
+height: 45px;
+
+flex-shrink: 0;
+
+padding: 5px;
+
+object-fit: contain;
+
+border-radius: 12px;
+
+background: white;
+
+}
+
+/* =====================================================
+MENU LOGO
+===================================================== */
+
+.menu-logo {
+width: 120px;
+height: auto;
+
+object-fit: contain;
+
+}
+
+/* =====================================================
+MOBILE IMAGE FIX
+===================================================== */
+
+@media (max-width: 799px) {
+
+.feature-image {
+    opacity: 0.68;
+}
+
+.service-image {
+    width: 50px;
+    height: 50px;
+}
+
+.project-visual {
+    min-height: 250px;
+}
+
+}
+
+/* =====================================================
+DESKTOP IMAGE SIZES
+===================================================== */
+
+@media (min-width: 800px) {
+
+.service-image {
+    width: 65px;
+    height: 65px;
+
+    border-radius: 16px;
+}
+
+}
